@@ -18,6 +18,8 @@
 .env.test.local
 .env.production.local
 .env
+delegation.car
+delegation_base64.txt
 
 npm-debug.log*
 yarn-debug.log*
