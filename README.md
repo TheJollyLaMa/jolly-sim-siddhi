@@ -1,12 +1,9 @@
 <div align="center">
-    <img src="https://bafybeiarqdmwbrhb2ncgzd25zyyl6zzh6wyjqmnfunkdluafhoqusflnte.ipfs.w3s.link/EthLogo.gif" alt="Eth Logo" width="100" height="100">
+
     <img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="Ens_Eth_Breathe Logo" width="100" height="100">
     <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="200" height="200">
-    <img src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="MintMe Logo" width="100" height="100">
-    <img src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="Polygon Logo" width="100" height="100">
-    <img src="https://bafybeicn7il3x7xmfckdqxctqxkiskcbnibw3mthjnwdcgjutjzxwgraai.ipfs.w3s.link/ReactLogo.jpeg" alt="React Logo" width="100" height="100">
-    <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="100" height="100">
-    <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="web3.storage Logo" width="100" height="100">
+    <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="100" height="100">
+
 </div>
 
 <div align="center">
@@ -16,13 +13,13 @@
 
 ## 🌟 Project Description
 
-Jolly Sim Siddhi is an innovative project aimed at revolutionizing the smart home ecosystem using decentralized technologies. Our platform leverages the power of blockchain and IPFS to create a secure, transparent, and efficient smart home experience. With Jolly Sim Siddhi, users can seamlessly connect and manage their smart home devices, share data securely, and earn rewards for contributing to the community.
+Jolly Sim Siddhi is an innovative project aimed at revolutionizing the smart home ecosystem using decentralized technologies. Our platform leverages the power of blockchain and IPFS to create a secure, transparent, and efficient smart home experience. With Jolly Sim Siddhi, users can seamlessly connect and manage their smart home devices, share data securely, and earn rewards for contributing to the community.  Data collected from community members who choose to share their data is used to improve algorithms that are released back to the community in an opensource manner.  This allows the community to benefit and incentivize what works. As successful community members share their way to success and abundance at home, their security spreads to surrounding community members willign and able to adopt a similar lifestlye.  Localized optimizations communicate automatically with oracles to suggest changes to households that are just beginning to come online.
 
 ### 🚀 Features
 
 - **Decentralized Storage:** Store and share data securely using IPFS.
 - **Blockchain Integration:** Utilize blockchain for secure and transparent transactions.
-- **Smart Home Connectivity:** Easily connect and manage various smart home devices.
+- **Smart Home Connectivity:** Easily connect and manage various smart home devices to live a more efficient, sustainable life.
 - **Community Rewards:** Earn rewards for contributing data and participating in the ecosystem.
 
 ## 📅 Milestones
@@ -48,9 +45,8 @@ Jolly Sim Siddhi is an innovative project aimed at revolutionizing the smart hom
 - <img src="https://bafybeicn7il3x7xmfckdqxctqxkiskcbnibw3mthjnwdcgjutjzxwgraai.ipfs.w3s.link/ReactLogo.jpeg" alt="React Logo" width="20" height="20"> **React**
 - <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="20" height="20"> **IPFS**
 - <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="web3.storage Logo" width="20" height="20"> **web3.storage**
-- **MetaMask**
-- **Node.js**
-- **Express.js**
+- <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="20" height="20"> **MetaMask**
+- <img src="https://bafybeie7l66frjp4im2xrsd3wxlhwcve4bxuxqrvs6i3a33untc6mwwkgm.ipfs.w3s.link/node_logo.png" alt="Node Logo" width="20" height="20"> **Node.js**
 
 ## 📖 Documentation
 
