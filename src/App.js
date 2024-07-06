@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import TopToolbar from './components/TopToolbar';
+import BottomToolbar from './components/BottomToolbar';
+import LeftToolbar from './components/LeftToolbar';
+import RightToolbar from './components/RightToolbar';
+import ThreeScene from './components/ThreeScene';
+import { initWeb3, initSocket } from './services/init';
+import './styles/App.css';
+import './styles/Toolbar.css';
+
 
 function App() {
+  const [walletAddress, setWalletAddress] = useState('No wallet connected');
+  const [networkName, setNetworkName] = useState('Connect Wallet');
+
+  useEffect(() => {
+    initWeb3(setWalletAddress, setNetworkName);
+    initSocket();
+  }, []);
+
+  const handleConnectSmartHome = () => {
+    // Implement the logic to connect smart home
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopToolbar
+        onConnectSmartHome={handleConnectSmartHome}
+        setWalletAddress={setWalletAddress}
+        setNetworkName={setNetworkName}
+        networkName={networkName}
+        walletAddress={walletAddress}
+      />
+      <ThreeScene />
+      <BottomToolbar />
+      <LeftToolbar />
+      <RightToolbar />
     </div>
   );
 }

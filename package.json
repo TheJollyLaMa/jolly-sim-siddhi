@@ -3,19 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ipld/car": "^5.3.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@ucanto/core": "^10.0.1",
+    "@ucanto/principal": "^9.0.1",
+    "@ucanto/transport": "^9.1.1",
+    "@web3-storage/w3up-client": "^15.0.0",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "buffer": "^6.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ipfs": "^0.66.1",
+    "ipfs-http-client": "^60.0.1",
+    "path": "^0.12.7",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.3",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "three": "^0.165.0",
+    "w3": "^2.0.2",
+    "web-vitals": "^2.1.4",
+    "web3": "^4.10.0",
+    "web3.storage": "^4.5.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "react-scripts start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.4"
+  },
+  "proxy": "http://localhost:3330"
 }

@@ -1,0 +1,148 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', sans-serif;
+}
+
+.toolbar {
+  width: 100%;
+  height: 60px;
+  background-color: rgba(34, 36, 37, 0.719);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.toolbar button {
+  padding: 10px;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+}
+
+.toolbar button img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.App {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#leftToolbar, #rightToolbar {
+  background-color: rgba(45, 78, 80, 0);
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#bottomToolbar {
+  background-color: rgba(34, 36, 37, 0.719);
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  bottom: 0;
+}
+
+#leftToolbar {
+  width: 60px;
+  height: calc(100% - 120px);
+  left: 0;
+  top: 60px;
+}
+
+#rightToolbar {
+  width: 60px;
+  height: calc(100% - 120px);
+  right: 0;
+  top: 60px;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(192, 192, 192, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  color: rgba(95, 95, 95, 0.776);
+}
+
+#bottomArrow::before {
+  content: '\2193';
+}
+
+#leftArrow::before {
+  content: '\2190';
+}
+
+#rightArrow::before {
+  content: '\2192';
+}
+
+.arrow.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
