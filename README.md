@@ -1,9 +1,7 @@
 <div align="center">
-
     <img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="Ens_Eth_Breathe Logo" width="100" height="100">
     <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="200" height="200">
     <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="100" height="100">
-
 </div>
 
 <div align="center">
@@ -58,8 +56,15 @@ We welcome contributions from the community! Please read our [Contributing Guide
 
 ## 📞 Contact
 
-If you have any questions or suggestions, feel free to reach out to us at [jollysim@decentdata.com](mailto:jollysim@decentdata.com).
+If you have any questions or suggestions, feel free to reach out to us at [jollysimsiddhi@gmail.com](mailto:jollysimsiddhi@gmail.com).
 
 <div align="center">
-    <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="200" height="200">
+    <img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="Ens_Eth_Breathe Logo" width="50" height="50">
+    <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="Ens_Eth_Breathe Logo" width="50" height="50">
+    <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="50" height="50">
+    <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="50" height="50">
+    <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="50" height="50">
+
+
+
 </div>
