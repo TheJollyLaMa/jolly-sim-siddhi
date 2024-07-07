@@ -20,7 +20,11 @@ Jolly Sim Siddhi is an innovative project aimed at revolutionizing the smart hom
 - **Smart Home Connectivity:** Easily connect and manage various smart home devices to live a more efficient, sustainable life.
 - **Community Rewards:** Earn rewards for contributing data and participating in the ecosystem.
 
-### W3Up Console
+<div>
+    <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="web3.storage Logo" width="20" height="20">
+    <h1>W3Up Console </h1>
+    <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="50" height="50">
+</div>
 
 W3Up console shows data stored on IPFS. Logos in the README.md are all pulled from the InterPlanetary Filesystem. This is where Decent Smart Home data is stored.
 
