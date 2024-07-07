@@ -22,7 +22,7 @@ Jolly Sim Siddhi is an innovative project aimed at revolutionizing the smart hom
 
 <div>
     <h1>
-        <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="web3.storage Logo" width="20" height="20">
+        <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="web3.storage Logo" width="50" height="50">
         W3Up Console
         <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="50" height="50">
     </h1>
