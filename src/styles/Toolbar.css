@@ -1,113 +1,58 @@
-/* Add this CSS to the existing Toolbar.css file */
+#bottomToolbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center;
+  padding: 10px;
+  position: relative; /* Enable positioning of child elements */
+}
 
-.toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: rgba(34, 36, 37, 0.719);
-    position: relative;
-    z-index: 1500; /* Ensure the toolbar is on top */
-  }
-  
-  #connectSmartHomeDropdown {
-    width: auto;
-    z-index: 2500; /* Ensure the dropdown is on top */
-  }
-  
-  .scrollable-menu {
-    max-height: calc(100vh - 70px); /* Full height of the page minus some padding */
-    overflow-y: auto;
-    z-index: 2500; /* Ensure the menu is on top of other elements */
-    position: relative;
-  }
-  
-  .dropdown-item-with-switch {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .toggle-switch {
-    margin-left: auto;
-  }
-  
-  .reward-tally {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-  }
-  
-  .reward-tally img {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-  }
-  
-  #walletAddress {
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    flex-grow: 1;
-  }
-  
-  #metamaskButton {
-    display: flex;
-    align-items: center;
-    background-color: #f0b90b;
-    border: none;
-    color: #333;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    width: auto;
-  }
-  
-  #metamaskButton img {
-    margin-right: 8px;
-  }
-  
-  #networkDropdown {
-    font-size: 14px;
-    background-color: #ffe5c8c0;
-    border: 1px solid #d29d5f58;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-left: 10px;
-    color: #d29d5f58;
-    cursor: pointer;
-  }
-  
-  #networkIcon {
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
-  }
-  
-  #bottomToolbar, #leftToolbar, #rightToolbar {
-    z-index: 500; /* Lower z-index for toolbars */
-  }
-  
-  #connectButton img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  
-  .dropdown-item-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .dropdown-item-text {
-    flex-grow: 1;
-  }
-  
-  .dropdown-item-controls {
-    display: flex;
-    align-items: center;
-  }
-  
+#bottomArrow {
+  cursor: pointer;
+  position: absolute;
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%); /* Adjust position to truly center */
+}
+
+.youtube-section {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 10px; /* Position YouTube section to the right */
+  bottom: 10px; /* Position YouTube section to the bottom */
+}
+
+.youtube-logo {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.youtube-input-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.youtube-input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.transcribe-button, .download-button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.download-button {
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  background-color: #007BFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}

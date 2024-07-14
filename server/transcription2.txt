@@ -1,0 +1,62 @@
+UCAN Build Apps with IPFS | Fil Lisbon Main Stage
+https://www.youtube.com/watch?v=DHIlNzCIj0w
+
+thanks for letting me back up here I'm going to get a little bit more Hands-On a little bit more hacker a little bit more CO2 than the last one so by the end of this you should have some pointers for where you want to go when it's time for you to pop open your laptop enjoying what three
+ the title of this talk is you can build apps with ipfs I mentioned that you can spec earlier today as anyone had a chance to look into it since then
+ it'll earn some more now it's really something that brings our industry together and that's part of why we're so excited about it
+ what three storage we are the easiest way to get your data on the decentralized web
+ so that means you got files you want to put them into ipfs and file
+you want to do it at web-scale at the kind of performance that end users have come to expect from Web 2.0 web 3 storage is a tool for you and in this talk all show a little bit about how our data pipeline works and also talked about some of the apis that make it so easy to work with
+ the problem they were fixing with web three is this centralized data and identity silos force you to write applications that have subpar user experiences if you go with the centralized tools now you're going to be subject to downtime you can't control you're going to be subject to users have a strong opinions about sign-in with XYZ that you've chosen and you're not going to have the ability to give users ownership of their data in the way that you can
+when you use the next generation of tools that were building
+ so the solution that we've brought is the web three storage developer platform and breaks down those identity silos by basing identity around cryptographic key material to tell by the user and it allows you to unlock the data layer share data repositories across applications have users choose which applications to run on which data and more flexibility that we haven't discovered yet
+ all these Protocols are super cool
+ and I think they're even more fun when we focus on making them so usable
+ so today I'm going to focus on our upload protocol W3 up but we also have W3 link which is our content delivery networks Gateway which is what powers
+our retrieval performance they can make your page load of nfts happen faster than any other way
+ and then W3 name is our mutability service that allows you to have high performance ipns update so you can tie a public key to the new records as a database style updates to the data on the platform
+ we seem to be doing all right this dotted line here was when ft winter started but it hasn't slowed our growth we've got a lot of folks who are using for the verifiable data at for the performance and scale that we offer so if you're running ipfs or getting data into filecoin and you don't want to maintain your own infrastructure what three storage might be the right choice for you
+ the open protocols that we built around ripoffs
+it's your alternator with pot in addressing is what powers the ability to pull data from anywhere on the network and have the fastest response be what gives users the good experience
+ did Zara web standard for identity it's a way of working with cryptographic key material like the non extractable key pairs that are on your touch ID or face ID mobile device
+ and it's a web standard so it's accessible via the Navigator. Credentials API
+ we use dids as the center of a user's you can universe and
+ applications can delegate to the users key there did the ability to upload or query users can delegate that capability to their other devices or to their friends and it opens up the server list
+this leads to a web you can trust
+ because Canta identifiers cidse mean the data is universally addressable it doesn't matter to you when you're running your code or writing your code where that day the lives you can always optimize it later by bringing a copy of the blocks that you need closer to your computer for moving the compute closer to block so you're using data anywhere takes out a whole set of concerns that developers have to scratch their heads about today which region should I put my dated in you don't need to worry about that anymore
+ the cryptographic verifiability of you can capability delegation enables the server was bizarre so that anyone could stand up functions and put them on the network and any application can call them and this also enables the bill
+rails so the people who are putting those functions up can get paid for running them hopefully that opens a whole new door of innovation in terms of how you write code and the kinds of applications that we see coming out
+ so the first API that I'll share with you is called W3 up all this stuff is in beta right now we're aiming to move from beta to full release early next year
+ and w3af is a new way of thinking about how to get data into the ipfs and filecoin Network
+ this is a little bit of what it offers so compared to our previous API we were moved to the size limits on file uploads and we're more friendly to very complex directory so we're ready for your 10,000 ft drop
+ we are built for verifying
+Woody from the beginning this means that when you go to do an upload you know what that CID is going to be before you start uploading so you can do things like in Cuba process to work with it when you upload is available and not only that but the car file that you upload you know that CID of that also so you can work with filecoin and collusion proofs to see your car file being stored in filecoin
+ and again that you can delegation means that the platform the infrastructure doesn't care about the difference between you giving access to your other device or an application given access to you for their account or you giving access to your friend so that flexibility allows us to hopefully surprise ourselves in the future with new kinds of applications
+ this is what it's like to work with from the command line interface
+ it's just a
+ easy npm install
+ then the first step.
+love you three up ID generates the local key material private and public key pair
+ W3 up register is window into how easy it is to code with these apis because when you typed that with your email address then it just hangs on the command line and you get an email when you click the link in the email and then it completes and you'll see that same behavior in the web browser when you use the components I'll talk about in a moment
+ the last line here W3 up upload is what you'll do all day so you hit that and now your directory is in ipfs and on its way to file coin and available via rw3 link Gateway for high-performance reads so W3 upload works great on like react. Field directory it works great on an empty drop it works great on your video file from this event
+ and I will step through what happens in the process I'll do this quickly
+I'll come grab me afterwards if you want more detail
+ first we start out by generating that keep air which is used as a signing key for you can
+ and then the key pair request to our API endpoint could I please register for give this account access to your service
+ now we're ready to upload so we're going to shock that upload into verifiable car files we use a smaller size by to call about 500 MB so that we play well with mobile and Edge like what browsers Etc
+ at once so you made the car trunks locally you know the CID and then you go to our infant with your you can and say Hey I want to upload these chunks and we say oh cool here's a signed URL boom and now you put that to this web scale bucket service at this point it's either
+best three or Club flares are too but any bucket will do for us so we just use URL to look at those files so we're ready to go multi-cloud at this
+ and now the fun part is those files just sit there and elastic ipfs our web scale ipfs pure implementation indexes the blocks as they sit in the bucket and provide them over B Swap and to the gateways
+ so the last thing you do is say
+ hey what three storage can I please bookmark my upload under you know this CID we don't know when you sent it the car file which of the blocks in that car file you consider the root of your data structure and it could be more than one so we allow you to bookmark Thursday ideas for your leader using your account
+ that's kind of the back-end experience that's so when you're using a c l i a writing code so you might want to think about where the easiest way to get data on to the decentralized web
+that means that we offer you I component that fresh out of code school you can drop these in your react up your spelled view react native and ready to go
+ so it's a headless and type safe Library which means we're not opinionated you can use a vanilla JS if you want we just want to work with everything
+ and it's designed to give you an out-of-the-box experience that you can be proud of but also allow you to upgrade to even more smooth and user experience so at first let's say you drop this can put it into your out and you don't even have to provision a web three storage account you can just have users come to your apps aren't using it decide they want to upload a photo and then will be prompted to create their own web search storage account to do it that way as the app developer it's free for you those are all your users accounts and probably most of them live in the free tier forever but if you want to Slicker user experience
+easy to enable the other path where the users upload into your account they don't even have to know what three storage is there
+ there's also a lot of flexibility in between that we imagine the industry will discover as we go on so if you want to take a look at this stuff you can go to Beta. You I web 3. Storage and we have coats and boxes you can run the code you can easily see some tutorials for how to work with it and if you really want to get started right now go ahead and scan a couple of these QR codes
+ the one on the left hand side is the back into challenge this would be the ability for users to upload to your account this is a code you would write in order to enable that on the right hand side
+ is a step-by-step where you grab our example apps it's just a simple
+dial up loader and convert it to a photo-sharing application so grab the browser camera right those B upload those B with the images converting that upload application to the camera gallery application when I do it in a longer Workshop it takes about 20 minutes so it's very user-friendly
+ so go ahead and grab those two are codes
+ and I have a couple more Reese's resources here for you on the last slide so we have our discussion group on Discord and you can join our mailing list and get notified of a new blog post in all that stuff so thank you very much come find us at the booth

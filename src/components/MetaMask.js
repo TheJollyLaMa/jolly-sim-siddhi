@@ -58,7 +58,6 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
     if (account) {
       setWalletAddress(formatAddress(account));
       setNetworkName(networkDetails[chainId]?.name || 'Unknown');
-      setArrowsEnabled(true);
       updateNetworkIcon(chainId);
       networkDropdownRef.current.value = chainId; // Set dropdown value to the current network
       networkDropdownRef.current.style.display = 'inline-block'; // Show dropdown when connected
@@ -67,7 +66,6 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
     } else {
       setWalletAddress('No wallet connected');
       setNetworkName('Connect Wallet');
-      setArrowsEnabled(false);
       networkIconRef.current.style.display = 'none';
       networkDropdownRef.current.style.display = 'none'; // Hide dropdown when not connected
       buttonTextRef.current.style.display = 'inline'; // Show button text when not connected
@@ -91,7 +89,9 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
     const start = address.slice(0, 4);
     const end = address.slice(-4);
     const img = `<img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="x" style="width: 16px; height: 16px; vertical-align: middle;">`.repeat(4);
-    return <span dangerouslySetInnerHTML={{ __html: `${start}${img}${end}` }} />;
+    return (
+      <span dangerouslySetInnerHTML={{ __html: `${start}${img}${end}` }} />
+    );
   };
 
   const updateNetworkIcon = (chainId) => {
@@ -104,12 +104,11 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
     }
   };
 
-  const setArrowsEnabled = (enabled) => {
-    document.querySelectorAll('.arrow').forEach(arrow => {
-      arrow.style.pointerEvents = enabled ? 'auto' : 'none';
-      arrow.style.opacity = enabled ? '1' : '0.5';
-    });
-  };
+  useEffect(() => {
+    if (selectedAccount && window.ethereum.chainId) {
+      updateNetworkIcon(window.ethereum.chainId);
+    }
+  }, [selectedAccount]);
 
   return (
     <button id="metamaskButton" onClick={connectMetaMask}>

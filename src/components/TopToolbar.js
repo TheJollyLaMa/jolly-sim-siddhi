@@ -5,6 +5,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../styles/Toolbar.css';
 import ToggleSwitch from './ToggleSwitch';
 import EmailFormModal from './EmailFormModal';
+import BottomToolbar from './BottomToolbar'; // Import BottomToolbar component
 
 const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, walletAddress }) => {
   const [switchStates, setSwitchStates] = useState({
@@ -86,61 +87,64 @@ const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, wall
   );
 
   return (
-    <div className="toolbar">
-      <DropdownButton
-        id="connectSmartHomeDropdown"
-        title={
-          <span>
-            <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="House Icon" />
-            Connect Smart Home
-          </span>
-        }
-        menuAlign="right"
-        drop="down"
-      >
-        <div className="scrollable-menu" style={{ zIndex: 2000, position: 'relative' }}>
-          {renderMenuItem('IPFS Pin Time')}
-          <Dropdown.Divider />
-          {renderMenuItem('Email & Contact Form')}
-          <Dropdown.Divider />
-          {renderMenuItem('Coordinate Form')}
-          <Dropdown.Divider />
-          <Dropdown.Header>Energy Report</Dropdown.Header>
-          {renderMenuItem('Energy Type/Usage')}
-          {renderMenuItem('Internet and Computing Capabilities')}
-          <Dropdown.Divider />
-          <Dropdown.Header>Food Forest Steward</Dropdown.Header>
-          {renderMenuItem('World Seed Bank Program')}
-          {renderMenuItem('FunGus Program')}
-          {renderMenuItem('Harvest To Market')}
-          {renderMenuItem('Good Husbands Animal Care')}
-          <Dropdown.Divider />
-          <Dropdown.Header>WasteMan</Dropdown.Header>
-          {renderMenuItem('Local Compost Program')}
-          {renderMenuItem('Precious Plastics')}
-          {renderMenuItem('Metalurgy')}
-          {renderMenuItem('Glass')}
-          <Dropdown.Divider />
-          <Dropdown.Header>HealthMan</Dropdown.Header>
-          {renderMenuItem('Body Stats with Honors')}
-          {renderMenuItem('Diet Stats with Honors')}
-          {renderMenuItem('Medical Record Data')}
-          <Dropdown.Divider />
-          <Dropdown.Header>Social Media Rewards</Dropdown.Header>
-          {renderMenuItem('Social Media Rewards')}
-          <Dropdown.Divider />
-          <Dropdown.Header>Service Rewards</Dropdown.Header>
-          {renderMenuItem('Service Rewards')}
-        </div>
-      </DropdownButton>
-      <span id="walletAddress">{walletAddress}</span>
-      <MetaMask setWalletAddress={setWalletAddress} setNetworkName={setNetworkName} />
-      <EmailFormModal
-        show={showEmailForm}
-        onHide={handleEmailFormClose}
-        onSubmit={handleEmailSubmit}
-      />
-    </div>
+    <>
+      <div className="toolbar">
+        <DropdownButton
+          id="connectSmartHomeDropdown"
+          title={
+            <span>
+              <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="House Icon" />
+              Connect Smart Home
+            </span>
+          }
+          menuAlign="right"
+          drop="down"
+        >
+          <div className="scrollable-menu" style={{ zIndex: 2000, position: 'relative' }}>
+            {renderMenuItem('IPFS Pin Time')}
+            <Dropdown.Divider />
+            {renderMenuItem('Email & Contact Form')}
+            <Dropdown.Divider />
+            {renderMenuItem('Coordinate Form')}
+            <Dropdown.Divider />
+            <Dropdown.Header>Energy Report</Dropdown.Header>
+            {renderMenuItem('Energy Type/Usage')}
+            {renderMenuItem('Internet and Computing Capabilities')}
+            <Dropdown.Divider />
+            <Dropdown.Header>Food Forest Steward</Dropdown.Header>
+            {renderMenuItem('World Seed Bank Program')}
+            {renderMenuItem('FunGus Program')}
+            {renderMenuItem('Harvest To Market')}
+            {renderMenuItem('Good Husbands Animal Care')}
+            <Dropdown.Divider />
+            <Dropdown.Header>WasteMan</Dropdown.Header>
+            {renderMenuItem('Local Compost Program')}
+            {renderMenuItem('Precious Plastics')}
+            {renderMenuItem('Metalurgy')}
+            {renderMenuItem('Glass')}
+            <Dropdown.Divider />
+            <Dropdown.Header>HealthMan</Dropdown.Header>
+            {renderMenuItem('Body Stats with Honors')}
+            {renderMenuItem('Diet Stats with Honors')}
+            {renderMenuItem('Medical Record Data')}
+            <Dropdown.Divider />
+            <Dropdown.Header>Social Media Rewards</Dropdown.Header>
+            {renderMenuItem('Social Media Rewards')}
+            <Dropdown.Divider />
+            <Dropdown.Header>Service Rewards</Dropdown.Header>
+            {renderMenuItem('Service Rewards')}
+          </div>
+        </DropdownButton>
+        <span id="walletAddress">{walletAddress}</span>
+        <MetaMask setWalletAddress={setWalletAddress} setNetworkName={setNetworkName} />
+        <EmailFormModal
+          show={showEmailForm}
+          onHide={handleEmailFormClose}
+          onSubmit={handleEmailSubmit}
+        />
+      </div>
+      <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress to BottomToolbar */}
+    </>
   );
 };
 
