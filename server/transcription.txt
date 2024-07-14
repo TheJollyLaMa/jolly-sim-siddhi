@@ -1,0 +1,194 @@
+everybody thanks for joining my name is Chris Andersen I'm a country storage I'm going to be talking to you through these new apis that will give you the ability to write apps in use at the fs the peer-to-peer file-sharing Network to distribute videos images application I said whatever you need so tell me what's new about some of the apis are offering is a performance and reliability and we managed it for you aspect of it so that you know you can get your data into the network and just work with it and not gonna have to be in infrastructure technician to use this technology today is talking a little bit about the background how about the storage fits as I get there
+world and the talk about these two new apis one of which is really designed for getting large files into the network and the other one is his eye to make it super easy to build apps interacting with that data so then you know how much time we have either show you through these example apps and how you can learn from the code or work through building one which can take in about 20 minutes if it goes smoothly
+ yeah if you feel like you're going to be Hands-On keyboard and you want to be like getting your workstation pret then you may want to start this npm install early we're out here all on the same conference Wi-Fi for the most part so it's going to be a little bit more forgiving
+ so what three storage is a part of protocol Labs which is the company
+filecoin we're going independent and sort of as we speak and building the kind of apis that we want to see ourselves as Developers for wraps on top of these protocols so why does the world need another storage vendor the existing ones are all centralized and anytime you code against centralized apis you end up bringing in all these like I guess compromises to your application you're going to have the data has to be a particular location you have to have a centralized Access Control you know login vendors login with Facebook login with Google or are you know you just have to manage passwords and all that station leads to some user experience compromises and things that we think we can just do better
+ so rather than having the data on the wrong side of the world we put it all in
+free network etcetera etcetera little bit about that the storage data layer is easiest way to get data on the decentralized web so that you can write ups with more flexibility and architectures that were that are available to you this means that you're not dependent on centralized Cloud providers and you get like kind of the benefits of multi-cloud without even having to think about cloud
+ these protocols that we use are all open protocols and that means that we're not the only game in town as far as if you want to take your business elsewhere we're kind of driving a lot of innovation but we're building this stuff in a way so that the dresses are all Universal and you can you move your application without too much turn
+ so I'll be posting on the upload side of a W3 epenesa stuff is kind of
+Foxton wait here at the storage apis we will also interact a little bit with W3 link which is the content delivery Network where your images and videos will be you know posted near the user as in I might mention W3 name a little bit although we don't use it in these demos it's like what you would use to keep a feed of the latest update of your stuff so if you had you know Channel where you're posting new videos than the W3 name might point to the HTML for that channel
+ something growing and we think that this is because of more than nfc's all in a fuser really clear way to understand the value proposition of what we bring to the table like users like in a few cuz they feel like they own them and that's for a lot of reasons one of the reasons is that the data is hosted on that works like this where it's due.
+could you ask for that Tata identifier you're going to get the valid data you can validate it based on the couch identifier so that makes these ideal links to put in the blockchain or any kind of assets being trapped in the blockchain but just one reason to track asset so anybody he's doing any kind of verifiable data is moving to models like this where you can and if you have a link to some data know when you get that data from somebody who has it to you that it's the right stuff I'm so that's useful or you know more than you're losing it for video evidence in your things as serious as war crimes and there's no folks who are seeing the value that I can have for you know all kinds of data collection anything they can offer like I signed out but whether that's a camera or a sensor array or anything so that you know we can take data
+Providence all the way back to its source and have quality data so that's driving I think a lot of this acceleration in growth recently
+ open protocols that open protocols that were built on a switch if folks aren't familiar with it it's like in the same part of the stack is HD so you're always doing HTTP whatever my PSI this is just another way to exchange data I'm on computers and what's unique about it is that uses content addresses so the data isn't location-based is based on what the data itself contains and that's what makes for all that verifiability but it also makes it really easy for us to do you like low-cost performance stuff which is one of the reasons you might be interested in mr. video and this is around login and cryptographic verifiability
+part of the browser it's kind of a new spec but like I've ever been on a website that has Touch ID or face ID that's Navigator credentials and so we're going to be working with that sell login if you build apps using this that's what we're building towards to the uses of kind of feel like they're in the future a little bit like that login with a crypto wallet feel but lightweight like the web also can easily Support login with crypto wallet or password or login with email or any of the other, things so far today we're doing login with email because it's super easy and then you can are the is like I guess ways that you can call remote services to do stuff for you so it's pretty broad but it's essentially like if I said hey went through storage store this you know I'm Jay Chris I have a count XYZ and all that's cryptographically verify
+enable some things where you can bring stints store into somebody else's account because they granted you access and this would allow for like interesting business models like let's say you had Video Collection with a website that wanted to sponsor people uploading their fan videos and so you write code the really easily makes it so they have that same cryptographic verifiability experience it's like rooted in their actual identity that that's their video but you can pay the bill for the upload to make it easier so we'll look at how that stuff works a minute but other vendors that are getting into the you can't spect and that's because it has the school properties I mentioned earlier multi-cloud I think this is
+multi-cloud really the cits that talked about where you look up the data by its content what that means and practices that you can just cash out to the network hey I'm looking for ABC and whoever gives it back to you first that they win you can you can you can verify if you not to trust them you can just tell because it's the right thing that means that you can get faster performance then was like web to data but also you can write your code not having to stress about where the data is because you can move the code or the data and I like in advance of running it or if you've got the data in a particular data center you can run a code in a Data Center and get more and more efficiency without having to as a developer think about those things so the cloud kind of goes away as one of your problems and you just write code with the tuc-tuc the data
+ I know we call it
+like this the metaphor of the cathedral and the bazaar is that like you know new technology since I'm start out like a Mainframe as a cathedral with like a bunch of people that have to maintain it and I know that and then over time they get democratize and then a bizarre like popped up outside the cathedral where people offer the same thing but like radically different perspectives and more diversity of you know options and what are using to take for and so we think that you can't mean that anyone can offer these services so I in the video world may be that the transcode or transcription or auto-tagging based on are you classifier what's a misdemeanor the color scheme of the video or whatever so people could write these different modules and you can give them to contact address of your video and they can give you back like that time stamp list of all the times that it was you know aerial shot of trees or whatever
+ and right now
+functionality gets done in the cathedral but with you can a dive shop to just knew how to write the kind of image recognition code to pretty easily plug on to the rails and you do not have to worry too hard about what it takes to manage payment and business agreement a structure in all the other steps it takes to get in that world
+ so hopefully that's like a preview some of the changes coming and I will get into the code a little more so
+ the W3 up apis the more basic low-level API that then the w3u I is going to work with and is going to be the first part where if you are like hands on keyboard at home then you might want to play along we're going to install this client library that comes with a man like actual and then like walk through it so
+ SLU benefits are
+because of the way these car files will talk about what those are in a second get managed and is all behind the scenes that it's kind of like why it works good you don't have to know this stuff so because these are streaming car files than big files you can upload those just fine because we have the verifiable cidse the upload ID but you know what it is before you start and that means like when you go to fetch it later and it comes back you don't have to worry in the back your mind that like something about your video got corrupted or whatever if you can fetch it it means it's the same day that you sent
+ and delegation again is new in this API and that's the thing that will look into where it allows you to like set up business models like you know it but easiest one being that you had a video upload site you can have the users pay for their own user accounts
+video upload site to be free to run basically so we'll talk through all those things
+ I guess now's the time to do this if you run these commands and I'll even if I'm there long enough for you to see him especially just get the spelling right on the first one then you'll be to the point where you can start uploading data and using those URLs to put images or videos on the CDM if we go to the first game and then install the infant module and then the ID command is generating private key material on your machine and so each ID and the W3 up World in so and public-private keep are just the base of the you can invitations when we're outside the browser we can't use the Navigator. Credentials API so instead we use
+yes cryptography but you still have the same idea that there's like a local key ring and it's going to sign everything and the account lives on that local Kira and ask for you no access to things like what their storage uploads or like a video encoder function so it's your account and you can connect it to all different services so this next line is where we connect it to but through storage the other register and you put in your email and it'll just like wait there for you to go click that link in your email once you do you'll get the finish up and you can run this and it'll see that you've registered yourself with like three stories and now we can upload records and files and whatever we need so
+ that's a
+ hopefully if you're like running into trouble with green p.m. install or something's I can we
+you'll have a little bit of time to mess with it cuz now I'm going to talk about what just happened if your uploaded work
+ as I mentioned in my ID step we create the private key and then we register that you can't key with the account so that we can upload
+ and now we create this isn't a streaming fashion so we create like East car trunk is like 500 megabytes makes it so that we don't need a ton of memory on your computer we can do is take from mobile device also car chunks for the upload if it's a big upload or put it all in one car file just a Content archive this is the final of the bunch of cidse in it and then we put those chunks
+ to the cloud but the way we do it is again with this cryptographically verifiable step where the you can't key that you have requests
+do the upload service hey I want to upload chunk it's this big this is a CID and so right now we are at 3 and then we index them by elastic ipfs which finds inside of the car files the individual cidse which is how like on playback your video you'd represent by a CID and then to continue the street and there's always like the next Eid that you're fetching so what we do in this case is
+ use elastic I guess that's what you something that we wrote is like a web scale I get best beer to put those CID to car file indexes into dynamodb
+ and then the client sent one more request to bookmark that Cid in your account and that's what an upload looks like so that's all happening behind the scenes when you put a new file in
+and it means that you can upload files of any size
+ now we have w3u I which is like the other API this is more fertile building apps so if you're building an upload app and you need you know a collection of folder of images or or a big movie file or whatever is a great way to put a widget on the screen to do that and I'll be focusing on react here but the
+ there are components available for a bunch of other Frameworks so if you go to the Spade at you I died went three. Storage website you can click through and see a bunch of the stuff that we've got available and I'm going to flip over today in just a minute here but first all will see the key ring uploader
+uploads list and they are headless at the core and then wrapped for reactive you or whatever so you can see the same kind of Unicode patterns Across The View and react in solid and if you wanted to learn some other framework is not like the worst place to start they should be like when people write tutorials using this tactic they hashtag beginner on the tutorials so they should be pretty easy to use and
+ they should work and pretty much any app we are Aveda right now part of that is that we're taking feedback really seriously and like knowing ourselves is not quite done so one of the things that were in the middle of is like a combined you know just like a one-liner you would drop in if you didn't even really care about customizing it
+and I'll be a lot easier for some of these use cases but even as it is there's not much work it takes to get going on it I'm actually I'll switch over to the website here and
+ I can see what it looks like
+ so
+ if you go to this beta. You lied I went through. Storage you can get into it the three components that I've mentioned and we'll go into the uploader 1
+ and see that for each one of these the code or like an example of how it would look in your code is here to see it's you know pretty simple as just pull the uploader and use it and then
+ it'll take the file from your warm and upload it
+ so
+ what school is it if we go view it
+codesandbox and let's take the second some actually going to come over here where it's already loaded up then
+ we can see a full app that's running with the providers and then like in here and we're going to go mess with this app in the second half and turn it into one deals with photos instead of files
+ so if we and if you go to this website is the old do the part which you probably see me do it again in a minute here where are you putting your email address and register a new account at once you get to this you need to choose a file and
+ I'll put one of these
+ images of here
+so that's the developer experience user experience you to get with almost no work are the reason to put this site together so you can go show that to your team without having to you know you like a purse Concepts thing
+ for me this is not flooded
+ yeah if we upload an image video I guess that works as well so
+ I will come back to this stuff in a minute but
+ so those are the components and then
+we're going to turn it into this other app so what we'll do is we'll start with an example at this out of the w3u I repo and then we'll bring in a component that can take an image from your web camera and we'll come together and do a little bit of CSS to clean it up if you go to this QR code now you can check out what it looks like when it's running or in a second I'll switch over to it but I wanted to give you a little
+ so when you refresh the page
+ and
+ these are pictures I took in the past I take another picture now and it'll help load up here on the list of the uploads done
+ so we'll go in and do that and
+ and come back to
+code so y'all can see how all the stuff is together
+ so here's the code of the when it's done and the main action is an abscess and the content page and I'm going to quick to her this and then we'll go put it together so here is like some business that is kind of stack Overflow copy and paste turn up a 64 URL into a file object
+ here's a state is that upload to resolve before here's using it
+ is Rip at the camera in and then here's where we display all those images using this little component so yes this is your first time seeing react I'll just say it's kind of neat
+this is just a function but now shows up with an angle brackets over here
+ so over here I have the example code this is in the w3u I repo so it's got a bunch of basically like the apps that we saw here since early and so if I take this out and I'm going to make a copy of it
+ bring it over into the editor
+ run my npm install
+and we should have this app running locally
+ so this is can be familiar from the website we saw over there we've got the app JS which wraps everything and these providers and we've got the content page that handles all the uploads
+ and we'll make some changes in here to remove most of the air and when we handle the air with just a little string output and the image app
+ let's see
+ first I'm going to run away have here
+ so this is just
+that
+ same you I that we saw there and we'll upload this video
+ make sure all the plumbing for a game
+ and then OK Google
+ I had a fork this camera just to clean up a little bit about the build and so we're going to add the camera module to the app so it's ready for us
+there we go
+ MTM is always the prankster I guess like that's what stack Overflow has that cartoon with the you got to practice your fencing while you're waiting for the build
+ I do it on a rolling chair OK Google in place I'm going to bring over some of the boilerplate switching back to the one that's already done and going to grab the camera and bring it in
+and then there's going to be that usage of the camera
+ basically it's going to require you to rest and it's going to require which user ass is how we react holds onto native components like canvas without repainting them do that
+ listen here
+ the cameras installed so that's good
+ so now beginning display the camera
+ and just double-check that it worked
+ alright that works
+ so we're in business with the working camera module and now it's time
+time to make that camera like take a photo
+ so what I like to do
+ and I'll just do this
+ simple part first
+ take photo function
+ and
+ see I want to put that on something so we'll make like a
+ button to take some photo
+ and
+ then the fun part is to display the photos and take them
+ so
+ I'm bringing in this that shows up as basically a list item inside of a u l HTML
+ and I guess at this point may as well
+clear out all those are handling we're not going to use
+ I'm leaving the air handling and for now can I swim like a tiny change
+ I'm putting this list in and I'm going to nap over the images
+ and
+ each image I'm going to display it so
+ I need images in the state that's just going to be an empty ready to start with
+ and
+ when I get a new image
+ I'm just going to set it
+ to the Sun
+I'm not doing any way through storage stuff yet I'm just kind of finishing wiring up the camera
+ RX
+ so
+ I got this right
+ we should have
+ images
+ like yeah there we go just anytime I press that but we're not doing anything with those but that's those are the images
+ and let's go back and wire him up to the real deal
+ so now we can delete all of this error handling we're not going to use her he's going to like clear out that
+so vagina are uploading
+ and then the HDMI for the page
+ Bill still is HTML and
+ changes are handling
+ instead of all those are handling HTML I'm just checking on the status of the upload and printing it out
+ so
+ yeah that's all right we have some mornings but no errors
+ and
+ I'm still not uploading
+ and if I keep going
+ it's going to get awkward so I'm going to fix the DSs thing first
+better
+ all right and now I'll go in and
+ wire up some of the remaining stuff
+ so let's make this this image actually saved somewhere I'll grab the data URL to file
+ I'm just pissed I didn't
+ contact page
+ and
+ now let's write the code that uses it
+ so
+ let's see take photo
+ is
+ already over here I was going to put the longer version its place instead of setting the CID to know what you're doing as a placeholder we're going to set the CID to what we get back from the upload operation
+it looks like it's building
+ and
+ now it's uploading and it's not going to repaint it uploads done
+ now it's done so
+ what were not doing yet I refreshed the page is we're not displaying any of the photos they got saved just empty list we start out so it's display those and that's the part where we end up installing another module
+ we need the upload list module from that already written one and all
+ and then we need the we need to do this with it on the app JS page before we forget one of the problems with providers in react for me is I sometimes forget to put them
+at the root of the app so he was not forget to do that go to app JS around it we're going to put this import this and then we're going to use this uploads with provider
+ and wrap it around the other code
+ so
+ over here
+ in the content page we can use the uploads list module
+ and hook
+ so now he's got everything
+ kind of like wired up with other modules in place and it's time to actually invoke this hook and
+ have a the list of uploads appear in our HTML output
+ so when we do the uploads hook it's going to give us
+let's see a bunch of things back in this apple we are really we're not going to try and reload the list with Street Realty page for that and we're not expecting any can use the loading state for anything you can use this list data
+ and what we do with it go back to the other out to grab the code is make sure that when it's not there yet we treated as an empty array and then otherwise we're just going to head straight over it in the HTML so
+ I'm going to clean up my list data
+ and then I'm going to get this out here
+ and
+ we'll see if that runs
+ toys
+play uploads from tetanus the other day so yeah I guess it does run
+ so yeah that's about what it takes to turn one of these fileupload apps into a
+ image upload at the wire to the camera there's course like much more you can do improve the style and whatever
+ let's see I kind of want to
+ just let y'all know since it's the video world live. Has this cool player that can play stuff from a CID and so I'm not like set up with one right now but but the idea is that you can just pass in a CID of your existing see like the Basse
+video
+ and so staying codeine is like not optimized for the for the experience right like I could take this video animation and put it into the player to optimize it for the end user experience so that's one of the things you can do with this stuff once it's uploaded lets you come back to
+ oh yeah okay so here's where you want to be if you want to take this home and work on it some more this thing we just did is over here on the left hand side and the other thing you can do what you want to do back in hacking is on the right hand side over here is about how you can set up different payment relationships so you can grant other people access to upload into your account
+actually with a Lambda single function at a private key that sides you can so in practice like let's say you have an existing app that uses are already logged into the Mystic just me and you put an API endpoint in your app that gives those users you can token with an expiration date that is there upload session
+ that's what makes it really easy to attach upload capability to your existing user sessions that's what's happening on the left hand side that screenshot this if you're at home and you want to keep going and I think you should hang out if you're working on this and if anybody's got any questions I'm happy to answer them
+ thank you Chris. Was super interesting or we have 5 minutes
+questions site I won't feel free to drop in the chats or I'll meet your self and ask it live just for people for Malaysian the questions at my one would be what are your top tips for using this technology for the first time
+ so if you're I guess I would start from that beta website and a code sandbox that I showed and that holds whether you're new to react new to Frontier programming like an expert, like no matter what your skill level is one of the things that we set out to do when we built this is make it so that it would be appropriate for beginners because you know people who want to do stuff like upload their Creations like you shouldn't have to spend Years Learning how to program to make a little side to do that anybody else your questions
+chat
+ so yeah I'll give a little bit of that ground if you are get if you're going to go Hands-On with this if you want to get deeper everything I just shared is our betta API and if you go on to the went through storage website like all that stuff is the is old API if you go onto the blog on the website all that stuff is the beta if you so just hang out on the blog and you won't get misled with with the old stuff or you know stick to the resources that are linked from this presentation
+ thank you I will be posting an article on this at so we'll have all the correct links are people going to the right place if there were no more questions I think the right things are three minutes early or just want to say thank you Chris for your time and for the grapes at workshop and we really appreciate you coming in
+ thanks everybody have a great
+rest of your day. See you guys in the next Workshop next week so you could buy
