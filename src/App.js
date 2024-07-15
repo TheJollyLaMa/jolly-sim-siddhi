@@ -8,7 +8,6 @@ import { initWeb3, initSocket } from './services/init';
 import './styles/App.css';
 import './styles/Toolbar.css';
 
-
 function App() {
   const [walletAddress, setWalletAddress] = useState('No wallet connected');
   const [networkName, setNetworkName] = useState('Connect Wallet');
@@ -32,7 +31,7 @@ function App() {
         walletAddress={walletAddress}
       />
       <ThreeScene />
-      <BottomToolbar />
+      <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress here */}
       <LeftToolbar />
       <RightToolbar />
     </div>

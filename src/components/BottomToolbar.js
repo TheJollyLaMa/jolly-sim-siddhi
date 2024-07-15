@@ -6,17 +6,13 @@ const BottomToolbar = ({ walletAddress }) => {
   const [showInput, setShowInput] = useState(false);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [fileReady, setFileReady] = useState(false);
-  const [filePath, setFilePath] = useState('');
 
   const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc'; // Replace with your specific wallet address
 
   const handleTranscribe = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:3330/transcribe', { url: youtubeLink });
-      setFilePath(response.data.filePath);
-      setFileReady(true);
+      await axios.post('http://localhost:3330/transcribe', { url: youtubeLink });
     } catch (error) {
       console.error('Error transcribing video:', error);
     } finally {
@@ -31,13 +27,12 @@ const BottomToolbar = ({ walletAddress }) => {
   const isCorrectWallet = walletAddress && typeof walletAddress === 'string' && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase();
   console.log('Is correct wallet:', isCorrectWallet);
 
-
   return (
     <div id="bottomToolbar">
       <div id="bottomArrow" className="arrow" onClick={() => window.location.href='bottomPage.html'}>
         <span>&darr;</span>
       </div>
-      {isCorrectWallet && walletAddress && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase() && (
+      {isCorrectWallet && (
         <div className="youtube-section">
           <img
             src="/assets/Youtube_Logo.png"
@@ -48,8 +43,7 @@ const BottomToolbar = ({ walletAddress }) => {
               setShowInput(!showInput);
             }}
             style={{ cursor: 'pointer' }} // Ensure the cursor indicates clickable
-
-          /> 
+          />
           {showInput && (
             <div className="youtube-input-container">
               <input
@@ -63,11 +57,6 @@ const BottomToolbar = ({ walletAddress }) => {
                 {isLoading ? 'Transcribing...' : 'Transcribe'}
               </button>
             </div>
-          )}
-          {fileReady && (
-            <a href={`http://localhost:3330/${filePath}`} download className="download-button">
-              Download Transcription
-            </a>
           )}
         </div>
       )}

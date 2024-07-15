@@ -17,12 +17,12 @@
 
 #networkDropdown {
   font-size: 18px;
-  background-color: #ffe5c8c0;
-  border: 1px solid #d29d5f58;
+  background-color: #3a3939db;
+  border: 1px solid #ffee0399;
   border-radius: 5px;
   padding: 2px 5px;
   margin-left: 10px;
-  color: #00ffd0ed;
+  color: #dae5e3ed;
   /*center the text*/
   display: flex;
   align-items: center;
