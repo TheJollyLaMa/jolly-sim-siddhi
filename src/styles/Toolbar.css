@@ -73,17 +73,21 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .youtube-input-container {
   display: flex;
   align-items: center;
   margin-left: 10px;
+  border-radius: 3px;
+
 }
 
 .youtube-input {
   padding: 5px;
   margin-right: 10px;
+  border-radius: 3px;
 }
 
 .transcribe-button, .download-button {
