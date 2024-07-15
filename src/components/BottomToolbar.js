@@ -6,15 +6,19 @@ const BottomToolbar = ({ walletAddress }) => {
   const [showInput, setShowInput] = useState(false);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [transcriptionStatus, setTranscriptionStatus] = useState(null);
 
   const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc'; // Replace with your specific wallet address
 
   const handleTranscribe = async () => {
     setIsLoading(true);
+    setTranscriptionStatus(null);
     try {
       await axios.post('http://localhost:3330/transcribe', { url: youtubeLink });
+      setTranscriptionStatus('Transcription complete! The file has been saved.');
     } catch (error) {
       console.error('Error transcribing video:', error);
+      setTranscriptionStatus('Error transcribing video. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -56,6 +60,12 @@ const BottomToolbar = ({ walletAddress }) => {
               <button onClick={handleTranscribe} disabled={isLoading || !youtubeLink} className="transcribe-button">
                 {isLoading ? 'Transcribing...' : 'Transcribe'}
               </button>
+              {isLoading && <div className="loading-spinner">Loading...</div>}
+            </div>
+          )}
+          {transcriptionStatus && (
+            <div className="transcription-status">
+              {transcriptionStatus}
             </div>
           )}
         </div>
