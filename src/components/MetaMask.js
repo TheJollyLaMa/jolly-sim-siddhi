@@ -56,7 +56,7 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
 
   const updateUI = (account, chainId) => {
     if (account) {
-      setWalletAddress(formatAddress(account));
+      setWalletAddress(account);
       setNetworkName(networkDetails[chainId]?.name || 'Unknown');
       updateNetworkIcon(chainId);
       networkDropdownRef.current.value = chainId; // Set dropdown value to the current network

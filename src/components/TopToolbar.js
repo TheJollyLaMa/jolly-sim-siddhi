@@ -5,7 +5,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../styles/Toolbar.css';
 import ToggleSwitch from './ToggleSwitch';
 import EmailFormModal from './EmailFormModal';
-import BottomToolbar from './BottomToolbar'; // Import BottomToolbar component
+import BottomToolbar from './BottomToolbar'; // Correct import
 
 const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, walletAddress }) => {
   const [switchStates, setSwitchStates] = useState({
@@ -136,7 +136,7 @@ const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, wall
           </div>
         </DropdownButton>
         <span id="walletAddress">{walletAddress}</span>
-        <MetaMask setWalletAddress={setWalletAddress} setNetworkName={setNetworkName} />
+        <MetaMask setWalletAddress={(address) => setWalletAddress(address.toString())} setNetworkName={setNetworkName} />
         <EmailFormModal
           show={showEmailForm}
           onHide={handleEmailFormClose}

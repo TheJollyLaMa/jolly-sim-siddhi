@@ -1,3 +1,47 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgba(34, 36, 37, 0.719);
+  position: relative;
+  z-index: 1500; /* Ensure the toolbar is on top */
+}
+
+#connectSmartHomeDropdown {
+  width: auto;
+  z-index: 2500; /* Ensure the dropdown is on top */
+}
+
+.scrollable-menu {
+  max-height: calc(100vh - 70px); /* Full height of the page minus some padding */
+  overflow-y: auto;
+  z-index: 2500; /* Ensure the menu is on top of other elements */
+  position: relative;
+}
+
+.dropdown-item-with-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-switch {
+  margin-left: auto;
+}
+
+.reward-tally {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.reward-tally img {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
 #bottomToolbar {
   position: fixed;
   bottom: 0;
