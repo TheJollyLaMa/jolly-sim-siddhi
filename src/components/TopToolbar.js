@@ -7,6 +7,7 @@ import ToggleSwitch from './ToggleSwitch';
 import EmailFormModal from './EmailFormModal';
 import BottomToolbar from './BottomToolbar'; // Correct import
 
+
 const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, walletAddress }) => {
   const [switchStates, setSwitchStates] = useState({
     'Coordinate Form': false,

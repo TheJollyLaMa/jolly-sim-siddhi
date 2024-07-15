@@ -31,12 +31,13 @@ const BottomToolbar = ({ walletAddress }) => {
   const isCorrectWallet = walletAddress && typeof walletAddress === 'string' && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase();
   console.log('Is correct wallet:', isCorrectWallet);
 
+
   return (
     <div id="bottomToolbar">
       <div id="bottomArrow" className="arrow" onClick={() => window.location.href='bottomPage.html'}>
         <span>&darr;</span>
       </div>
-      {isCorrectWallet && (
+      {isCorrectWallet && walletAddress && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase() && (
         <div className="youtube-section">
           <img
             src="/assets/Youtube_Logo.png"
@@ -47,7 +48,8 @@ const BottomToolbar = ({ walletAddress }) => {
               setShowInput(!showInput);
             }}
             style={{ cursor: 'pointer' }} // Ensure the cursor indicates clickable
-          />
+
+          /> 
           {showInput && (
             <div className="youtube-input-container">
               <input
