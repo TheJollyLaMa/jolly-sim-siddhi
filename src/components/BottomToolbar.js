@@ -6,19 +6,16 @@ const BottomToolbar = ({ walletAddress }) => {
   const [showInput, setShowInput] = useState(false);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [transcriptionStatus, setTranscriptionStatus] = useState(null);
 
   const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc'; // Replace with your specific wallet address
 
   const handleTranscribe = async () => {
     setIsLoading(true);
-    setTranscriptionStatus(null);
     try {
       await axios.post('http://localhost:3330/transcribe', { url: youtubeLink });
-      setTranscriptionStatus('Transcription complete! The file has been saved.');
+      console.log('Transcription complete! The file has been saved.');
     } catch (error) {
       console.error('Error transcribing video:', error);
-      setTranscriptionStatus('Error transcribing video. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -29,7 +26,7 @@ const BottomToolbar = ({ walletAddress }) => {
   }, [walletAddress]);
 
   const isCorrectWallet = walletAddress && typeof walletAddress === 'string' && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase();
-  console.log('Wallet has Special Access:', isCorrectWallet);
+  console.log('Is correct wallet:', isCorrectWallet);
 
   return (
     <div id="bottomToolbar">
@@ -38,16 +35,18 @@ const BottomToolbar = ({ walletAddress }) => {
       </div>
       {isCorrectWallet && (
         <div className="youtube-section">
-          <img
-            src="/assets/Youtube_Logo.png"
-            alt="YouTube"
-            className="youtube-logo"
-            onClick={() => {
-              console.log('YouTube logo clicked');
-              setShowInput(!showInput);
-            }}
-            style={{ cursor: 'pointer' }} // Ensure the cursor indicates clickable
-          />
+          {!showInput && (
+            <img
+              src="/assets/Youtube_Logo.png"
+              alt="YouTube"
+              className="youtube-logo"
+              onClick={() => {
+                console.log('YouTube logo clicked');
+                setShowInput(true);
+              }}
+              style={{ cursor: 'pointer' }} // Ensure the cursor indicates clickable
+            />
+          )}
           {showInput && (
             <div className="youtube-input-container">
               <input
@@ -61,11 +60,6 @@ const BottomToolbar = ({ walletAddress }) => {
                 {isLoading ? 'Transcribing...' : 'Transcribe'}
               </button>
               {isLoading && <div className="loading-spinner">Loading...</div>}
-            </div>
-          )}
-          {transcriptionStatus && (
-            <div className="transcription-status">
-              {transcriptionStatus}
             </div>
           )}
         </div>
