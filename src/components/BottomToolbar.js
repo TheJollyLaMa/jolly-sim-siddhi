@@ -29,7 +29,7 @@ const BottomToolbar = ({ walletAddress }) => {
   }, [walletAddress]);
 
   const isCorrectWallet = walletAddress && typeof walletAddress === 'string' && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase();
-  console.log('Is correct wallet:', isCorrectWallet);
+  console.log('Wallet has Special Access:', isCorrectWallet);
 
   return (
     <div id="bottomToolbar">
