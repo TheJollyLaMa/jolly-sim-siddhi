@@ -12,7 +12,7 @@ const BottomToolbar = ({ walletAddress }) => {
   const handleTranscribe = async () => {
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:3330/transcribe', { url: youtubeLink });
+      await axios.post('http://localhost:3330/api/transcribe', { url: youtubeLink }); // Updated endpoint
       console.log('Transcription complete! The file has been saved.');
     } catch (error) {
       console.error('Error transcribing video:', error);

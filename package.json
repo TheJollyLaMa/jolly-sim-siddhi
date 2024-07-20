@@ -12,6 +12,7 @@
     "@ucanto/core": "^10.0.1",
     "@ucanto/principal": "^9.0.1",
     "@ucanto/transport": "^9.1.1",
+    "@web3-storage/access": "^20.0.0",
     "@web3-storage/w3up-client": "^15.0.0",
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",

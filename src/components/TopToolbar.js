@@ -1,42 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MetaMask from './MetaMask';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import '../styles/Toolbar.css';
-import ToggleSwitch from './ToggleSwitch';
+import RewardsDropdown from './RewardsDropdown';
 import EmailFormModal from './EmailFormModal';
-import BottomToolbar from './BottomToolbar'; // Correct import
-
+import BottomToolbar from './BottomToolbar';
+import '../styles/Toolbar.css';
 
 const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, walletAddress }) => {
-  const [switchStates, setSwitchStates] = useState({
-    'Coordinate Form': false,
-    'Energy Type/Usage': false,
-    'Internet and Computing Capabilities': false,
-    'World Seed Bank Program': false,
-    'FunGus Program': false,
-    'Harvest To Market': false,
-    'Good Husbands Animal Care': false,
-    'Local Compost Program': false,
-    'Precious Plastics': false,
-    'Metalurgy': false,
-    'Glass': false,
-    'Body Stats with Honors': false,
-    'Diet Stats with Honors': false,
-    'Medical Record Data': false,
-    'IPFS Pin Time': false,
-    'Email & Contact Form': false,
-    'Social Media Rewards': false,
-    'Service Rewards': false
-  });
   const [showEmailForm, setShowEmailForm] = useState(false);
+  const [walletConnected, setWalletConnected] = useState(false);
 
-  const handleToggle = (name) => {
-    setSwitchStates(prevState => ({
-      ...prevState,
-      [name]: !prevState[name]
-    }));
-  };
+  useEffect(() => {
+    if (walletAddress && walletAddress !== 'No wallet connected') {
+      setWalletConnected(true);
+    } else {
+      setWalletConnected(false);
+    }
+  }, [walletAddress]);
 
   const handleEmailFormOpen = () => {
     setShowEmailForm(true);
@@ -48,7 +27,7 @@ const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, wall
 
   const handleEmailSubmit = async (email) => {
     try {
-      const response = await fetch('http://localhost:3330/submit-email', {
+      const response = await fetch('http://localhost:3330/api/submit-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -68,76 +47,41 @@ const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, wall
     }
   };
 
-  const renderMenuItem = (name) => (
-    <Dropdown.Item onClick={name === 'Email & Contact Form' ? handleEmailFormOpen : () => onConnectSmartHome(name)}>
-      <div className="dropdown-item-content">
-        <span className="dropdown-item-text">{name}</span>
-        <div className="dropdown-item-controls">
-          <ToggleSwitch
-            id={name}
-            checked={switchStates[name]}
-            onChange={() => handleToggle(name)}
-          />
-          <div className="reward-tally">
-            <img src="/assets/DecentSmartHome.png" alt="Reward Icon" />
-            <span>0.00</span>
-          </div>
-        </div>
-      </div>
-    </Dropdown.Item>
-  );
+  const setupWeb3Storage = async () => {
+    try {
+      const email = 'user@example.com'; // Replace with dynamic user email
+      console.log('Setting up web3.storage with:', { walletAddress, email });
+
+      const response = await fetch('http://localhost:3330/api/setup-web3storage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ walletAddress, email }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to set up web3.storage');
+      }
+
+      const { storageDid } = await response.json();
+      console.log('web3.storage setup successfully, storageDid:', storageDid);
+    } catch (error) {
+      console.error('Error setting up web3.storage:', error); // Only log the error to console
+    }
+  };
 
   return (
     <>
       <div className="toolbar">
-        <DropdownButton
-          id="connectSmartHomeDropdown"
-          title={
-            <span>
-              <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="House Icon" />
-              Connect Smart Home
-            </span>
-          }
-          menuAlign="right"
-          drop="down"
-        >
-          <div className="scrollable-menu" style={{ zIndex: 2000, position: 'relative' }}>
-            {renderMenuItem('IPFS Pin Time')}
-            <Dropdown.Divider />
-            {renderMenuItem('Email & Contact Form')}
-            <Dropdown.Divider />
-            {renderMenuItem('Coordinate Form')}
-            <Dropdown.Divider />
-            <Dropdown.Header>Energy Report</Dropdown.Header>
-            {renderMenuItem('Energy Type/Usage')}
-            {renderMenuItem('Internet and Computing Capabilities')}
-            <Dropdown.Divider />
-            <Dropdown.Header>Food Forest Steward</Dropdown.Header>
-            {renderMenuItem('World Seed Bank Program')}
-            {renderMenuItem('FunGus Program')}
-            {renderMenuItem('Harvest To Market')}
-            {renderMenuItem('Good Husbands Animal Care')}
-            <Dropdown.Divider />
-            <Dropdown.Header>WasteMan</Dropdown.Header>
-            {renderMenuItem('Local Compost Program')}
-            {renderMenuItem('Precious Plastics')}
-            {renderMenuItem('Metalurgy')}
-            {renderMenuItem('Glass')}
-            <Dropdown.Divider />
-            <Dropdown.Header>HealthMan</Dropdown.Header>
-            {renderMenuItem('Body Stats with Honors')}
-            {renderMenuItem('Diet Stats with Honors')}
-            {renderMenuItem('Medical Record Data')}
-            <Dropdown.Divider />
-            <Dropdown.Header>Social Media Rewards</Dropdown.Header>
-            {renderMenuItem('Social Media Rewards')}
-            <Dropdown.Divider />
-            <Dropdown.Header>Service Rewards</Dropdown.Header>
-            {renderMenuItem('Service Rewards')}
-          </div>
-        </DropdownButton>
+        <RewardsDropdown 
+          walletConnected={walletConnected} 
+          setupWeb3Storage={setupWeb3Storage} 
+          handleEmailFormOpen={handleEmailFormOpen}
+          onConnectSmartHome={onConnectSmartHome}
+        />
         <span id="walletAddress">{walletAddress}</span>
-        <MetaMask setWalletAddress={(address) => setWalletAddress(address.toString())} setNetworkName={setNetworkName} />
+        <MetaMask setWalletAddress={setWalletAddress} setNetworkName={setNetworkName} />
         <EmailFormModal
           show={showEmailForm}
           onHide={handleEmailFormClose}
