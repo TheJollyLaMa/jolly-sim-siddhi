@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Black Cat</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        text-align: center;
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+      .bc {
+        width: 60%;
+        height: 40%;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+      .follow_rabbit_text {
+        font-size: 2em;
+        font-family: 'Courier New', Courier, monospace;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Black Cat</h1>
+      Error in your Program Neo!
+      <br><br>
+      <img class="bc" src="https://decentagency.space/public/img/bc.gif" alt="black_cat">
+      <br><br>
+      <div id="follow_rabbit_text"></div>
+      <div></div>
+        <div></div>
+      </div>
+      <br><br>
+
+    </div>
+    <script>
+      //typewriter effect
+      var i = 0, j = 0, k = 0, l = 0;
+      var txt1 = "Wake up Neo...";
+      var txt2 = "The Matrix has you...";
+      var txt3 = "Follow the white rabbit . . . . . . .";
+      var txt4 = "Knock, knock, Neo.";
+      var txtList = [txt1, txt2, txt3, txt4];
+      var speed = 200;
+      function typeWriter1() {
+        if (i < txt1.length) {
+          document.getElementById("follow_rabbit_text").innerHTML += txt1.charAt(i);
+          i++;
+          setTimeout(typeWriter1, speed);
+        }
+      } 
+      typeWriter1();
+      setTimeout(
+        function() {
+          document.getElementById("follow_rabbit_text").innerHTML = "";
+        }, 4400
+      )
+      function typeWriter2() {
+
+        if (j < txt2.length) {
+          document.getElementById("follow_rabbit_text").innerHTML += txt2.charAt(j);
+          j++;
+          setTimeout(typeWriter2, speed);
+        }
+      }
+      setTimeout(typeWriter2, 4600);
+      setTimeout(
+        function() {
+          document.getElementById("follow_rabbit_text").innerHTML = "";
+        }, 10000
+      )
+      function typeWriter3() {
+        if (k < txt3.length) {
+          document.getElementById("follow_rabbit_text").innerHTML += txt3.charAt(k);
+          k++;
+          setTimeout(typeWriter3, speed);
+        }
+      }
+      setTimeout(typeWriter3, 12000);
+      setTimeout(
+        function() {
+          document.getElementById("follow_rabbit_text").innerHTML = "";
+        }, 18000
+      )
+      function typeWriter4() {
+        if (l < txt4.length) {
+          document.getElementById("follow_rabbit_text").innerHTML += txt4.charAt(l);
+          l++;
+          setTimeout(typeWriter4, speed);
+        }
+      }
+      setTimeout(typeWriter4, 20000);
+      // setTimeout(
+      //   function() {
+      //     document.getElementById("follow_rabbit_text").innerHTML = "";
+      //   }, 26000
+      // )
+  </script>
+</body>
+</html>

@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3330;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 const emailRoutes = require('./routes/email');
 const coordinatesRoutes = require('./routes/coordinates');
@@ -20,7 +21,7 @@ const transcribeRoutes = require('./routes/transcribe');
 const rewardsRoutes = require('./routes/rewards');
 const setupWeb3StorageRoutes = require('./routes/setupWeb3Storage');
 const landSurveyRoutes = require('./routes/landSurvey');
-const waterSurveyRoutes = require('./routes/waterSurvey'); // Import the new waterSurvey route
+const waterSurveyRoutes = require('./routes/waterSurvey');
 
 app.use('/api', emailRoutes);
 app.use('/api', coordinatesRoutes);
@@ -35,6 +36,18 @@ app.get('/api', (req, res) => {
   res.send({ message: 'Hello from the server!' });
 });
 
+// Fallback route for handling 404 errors (page not found)
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, '../public/error.html'));
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).sendFile(path.join(__dirname, '../public/error.html'));
+});
+
+// Catch-all route for handling client-side routing in React
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });

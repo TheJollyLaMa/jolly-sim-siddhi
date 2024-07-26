@@ -27,12 +27,12 @@ const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, wall
 
   const handleEmailSubmit = async (email) => {
     try {
-      const response = await fetch('http://localhost:3330/api/submit-email', {
+      const response = await fetch('/api/setup-web3storage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ walletAddress, email })
       });
 
       if (!response.ok) {
@@ -48,27 +48,7 @@ const TopToolbar = ({ onConnectSmartHome, setWalletAddress, setNetworkName, wall
   };
 
   const setupWeb3Storage = async () => {
-    try {
-      const email = 'user@example.com'; // Replace with dynamic user email
-      console.log('Setting up web3.storage with:', { walletAddress, email });
-
-      const response = await fetch('http://localhost:3330/api/setup-web3storage', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ walletAddress, email }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to set up web3.storage');
-      }
-
-      const { storageDid } = await response.json();
-      console.log('web3.storage setup successfully, storageDid:', storageDid);
-    } catch (error) {
-      console.error('Error setting up web3.storage:', error); // Only log the error to console
-    }
+    setShowEmailForm(true);
   };
 
   return (

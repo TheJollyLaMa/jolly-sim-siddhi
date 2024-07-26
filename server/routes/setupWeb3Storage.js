@@ -1,10 +1,14 @@
 const express = require('express');
-const { parseProof } = require('../helpers/parseProof');
 require('dotenv').config();
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
+const { exec } = require('child_process');
 
 router.post('/setup-web3storage', async (req, res) => {
   const { walletAddress, email } = req.body;
+
+  console.log('Received request with walletAddress:', walletAddress, 'and email:', email);
 
   if (!walletAddress || !email) {
     console.error('Missing wallet address or email', req.body);
@@ -12,48 +16,93 @@ router.post('/setup-web3storage', async (req, res) => {
   }
 
   try {
-    const { Client } = await import('@web3-storage/w3up-client');
-    const { generate } = await import('@ucanto/principal/ed25519');
-    const { StoreMemory } = await import('@web3-storage/access/stores/store-memory');
-    const { Agent } = await import('@web3-storage/access');
+    console.log('Starting setup of web3.storage...');
 
-    console.log('Imports successful');
-
-    // Generate a key pair
-    const principal = await generate();
-    console.log('Key pair generated:', principal);
-
-    const did = principal.did();
-    if (!did) {
-      throw new Error('DID is not defined on principal');
+    // Create a JSON file with the email address in the /tmp directory
+    const tempDir = path.join(__dirname, '..', '..', 'tmp');
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir);
     }
-    console.log('DID:', did);
+    const filePath = path.join(tempDir, 'email_address.json');
+    const fileContent = JSON.stringify({ email });
+    fs.writeFileSync(filePath, fileContent);
+    console.log('JSON file created at:', filePath);
 
-    // Create an agent with the principal
-    const agentData = { principal };
-    const serviceConf = { /* your service configuration here */ };
-    const agent = new Agent(agentData, { serviceConf });
-    console.log('Agent created:', agent);
+    // Execute the w3 login command
+    exec(`w3 login ${email}`, (loginError, loginStdout, loginStderr) => {
+      if (loginError) {
+        console.error(`Error logging in: ${loginError.message}`);
+        return res.status(500).send({ error: 'Error logging in to web3.storage' });
+      }
+      if (loginStderr) {
+        console.error(`Login error: ${loginStderr}`);
+        return res.status(500).send({ error: loginStderr });
+      }
+      console.log(`Logged in successfully: ${loginStdout}`);
 
-    // Ensure StoreMemory is correctly instantiated
-    const store = new StoreMemory();
-    const client = new Client(agent, { store });
-    console.log('Client created:', client);
+      // Retrieve user's spaces
+      exec(`w3 space ls`, (spaceListError, spaceListStdout, spaceListStderr) => {
+        if (spaceListError) {
+          console.error(`Error listing spaces: ${spaceListError.message}`);
+          return res.status(500).send({ error: 'Error listing spaces' });
+        }
+        if (spaceListStderr) {
+          console.error(`Space list error: ${spaceListStderr}`);
+          return res.status(500).send({ error: spaceListStderr });
+        }
 
-    await client.capability.access.authorize(email);
-    await client.capability.access.claim();
-    console.log('Agent authorized');
+        console.log('Space list output:', spaceListStdout);
 
-    const space = await client.createSpace('user-space');
-    await client.setCurrentSpace(space.did());
-    await client.registerSpace(email, { provider: 'did:web:web3.storage' });
-    console.log('Space created and registered:', space);
+        const spaceLines = spaceListStdout.trim().split('\n');
+        console.log('Parsed space lines:', spaceLines);
 
-    const fs = require('fs');
-    fs.appendFileSync('.env', `\n${walletAddress}_PRIVATE_KEY=${principal.secret.toString('base64')}`);
-    fs.appendFileSync('.env', `\n${walletAddress}_PROOF=${encodedUcan}`);
+        const spaces = spaceLines.map(line => {
+          const [did, name] = line.trim().split(/\s+/);
+          return { did, name };
+        });
 
-    res.status(200).send({ storageDid: space.did() });
+        console.log('Parsed spaces:', spaces);
+
+        const userSpace = spaces.find(space => space.name === 'MySimSiddhiDataSpace');
+        if (!userSpace) {
+          console.error('User space "MySimSiddhiDataSpace" not found');
+          return res.status(500).send({ error: 'User space not found' });
+        }
+
+        // Execute the w3 space use command to set the user's space
+        exec(`w3 space use ${userSpace.did}`, (spaceUseError, spaceUseStdout, spaceUseStderr) => {
+          if (spaceUseError) {
+            console.error(`Error using space: ${spaceUseError.message}`);
+            return res.status(500).send({ error: 'Error using space' });
+          }
+          if (spaceUseStderr) {
+            console.error(`Space use error: ${spaceUseStderr}`);
+            return res.status(500).send({ error: spaceUseStderr });
+          }
+          console.log(`Using space: ${userSpace.did}`);
+
+          // Execute the w3 up command to upload the JSON file
+          exec(`w3 up ${filePath}`, (uploadError, uploadStdout, uploadStderr) => {
+            if (uploadError) {
+              console.error(`Error uploading file: ${uploadError.message}`);
+              return res.status(500).send({ error: 'Error uploading email file' });
+            }
+            if (uploadStderr) {
+              console.error(`Upload error: ${uploadStderr}`);
+              return res.status(500).send({ error: uploadStderr });
+            }
+            const cid = uploadStdout.trim();
+            console.log(`File uploaded successfully. CID: ${cid}`);
+
+            // Optionally store the CID in the .env file
+            fs.appendFileSync('.env', `\n${walletAddress}_PROOF=${cid}`);
+            console.log('.env file updated with CID.');
+
+            res.status(200).send({ cid });
+          });
+        });
+      });
+    });
   } catch (error) {
     console.error('Error setting up web3.storage:', error);
     res.status(500).send({ error: 'Error setting up web3.storage' });
