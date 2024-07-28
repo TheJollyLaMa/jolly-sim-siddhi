@@ -22,6 +22,7 @@ const rewardsRoutes = require('./routes/rewards');
 const setupWeb3StorageRoutes = require('./routes/setupWeb3Storage');
 const landSurveyRoutes = require('./routes/landSurvey');
 const waterSurveyRoutes = require('./routes/waterSurvey');
+const getTokenBalanceRoutes = require('./routes/getTokenBalance');
 
 app.use('/api', emailRoutes);
 app.use('/api', coordinatesRoutes);
@@ -30,7 +31,8 @@ app.use('/api', transcribeRoutes);
 app.use('/api', rewardsRoutes);
 app.use('/api', setupWeb3StorageRoutes);
 app.use('/api', landSurveyRoutes);
-app.use('/api', waterSurveyRoutes); // Use the new waterSurvey route
+app.use('/api', waterSurveyRoutes); 
+app.use('/api', getTokenBalanceRoutes);
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Hello from the server!' });

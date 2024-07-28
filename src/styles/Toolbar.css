@@ -103,3 +103,41 @@
   padding: 5px 10px;
   border-radius: 3px;
 }
+
+.miner-switch-and-balances {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 3px;
+}
+
+.token-balances {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.token-balance {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 3px;
+}
+
+.token-icon {
+  width: 24px;
+  height: 24px;
+  margin: 3px;
+}
+
+.miner-switch {
+  display: flex;
+  align-items: center;
+}
+
+#formattedAddress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}

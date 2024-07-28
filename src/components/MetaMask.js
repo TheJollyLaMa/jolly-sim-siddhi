@@ -1,16 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/MetaMask.css'; // Updated path
 
-const MetaMask = ({ setWalletAddress, setNetworkName }) => {
-  const [selectedAccount, setSelectedAccount] = useState(null);
+const networkDetails = {
+  "0x1": { name: "Ethereum Mainnet", icon: "https://bafybeiarqdmwbrhb2ncgzd25zyyl6zzh6wyjqmnfunkdluafhoqusflnte.ipfs.w3s.link/EthLogo.gif" },
+  "0x89": { name: "Polygon", icon: "https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" },
+  "0x609e": { name: "MintMe", icon: "https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" }
+};
+
+const formatAddress = (address, chainId) => {
+  const start = address.slice(0, 4);
+  const end = address.slice(-4);
+  const networkIcons = networkDetails[chainId] ? networkDetails[chainId].icon : '';
+  const img = `<img src="${networkIcons}" alt="x" style="width: 16px; height: 16px; vertical-align: middle;">`.repeat(4);
+  return (
+    <span dangerouslySetInnerHTML={{ __html: `${start}${img}${end}` }} />
+  );
+};
+
+const MetaMask = ({ setWalletAddress, setNetworkName, setFormattedAddress, setSelectedAccount }) => {
+  const [selectedAccount, setSelectedAccountState] = useState(null);
   const networkIconRef = useRef(null); // Create a ref for the network icon
   const networkDropdownRef = useRef(null); // Create a ref for the network dropdown
   const buttonTextRef = useRef(null); // Create a ref for the button text
-  const networkDetails = {
-    "0x1": { name: "Ethereum Mainnet", icon: "https://bafybeiarqdmwbrhb2ncgzd25zyyl6zzh6wyjqmnfunkdluafhoqusflnte.ipfs.w3s.link/EthLogo.gif" },
-    "0x89": { name: "Polygon", icon: "https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" },
-    "0x609e": { name: "MintMe", icon: "https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" }
-  };
 
   useEffect(() => {
     if (window.ethereum) {
@@ -30,23 +41,28 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
     if (window.ethereum) {
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setSelectedAccountState(accounts[0]);
         setSelectedAccount(accounts[0]);
         updateUI(accounts[0], window.ethereum.chainId);
       } catch (error) {
         console.error('Error connecting to MetaMask:', error);
+        setSelectedAccountState(null);
         setSelectedAccount(null);
         updateUI(null, window.ethereum.chainId);
       }
     } else {
       alert('MetaMask is not installed. Please install MetaMask to use this feature.');
+      setSelectedAccountState(null);
       setSelectedAccount(null);
       updateUI(null, window.ethereum.chainId);
     }
   };
 
   const handleAccountsChanged = (accounts) => {
-    setSelectedAccount(accounts.length > 0 ? accounts[0] : null);
-    updateUI(accounts.length > 0 ? accounts[0] : null, window.ethereum.chainId);
+    const account = accounts.length > 0 ? accounts[0] : null;
+    setSelectedAccountState(account);
+    setSelectedAccount(account);
+    updateUI(account, window.ethereum.chainId);
   };
 
   const handleChainChanged = (chainId) => {
@@ -63,12 +79,14 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
       networkDropdownRef.current.style.display = 'inline-block'; // Show dropdown when connected
       buttonTextRef.current.style.display = 'none'; // Hide button text when connected
       networkIconRef.current.style.display = 'inline'; // Ensure network icon is displayed
+      setFormattedAddress(formatAddress(account, chainId));
     } else {
       setWalletAddress('No wallet connected');
       setNetworkName('Connect Wallet');
       networkIconRef.current.style.display = 'none';
       networkDropdownRef.current.style.display = 'none'; // Hide dropdown when not connected
       buttonTextRef.current.style.display = 'inline'; // Show button text when not connected
+      setFormattedAddress('No wallet connected');
     }
   };
 
@@ -83,15 +101,6 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
       console.error('Failed to switch the network:', error);
       alert(`Failed to switch the network: ${error.message}`);
     }
-  };
-
-  const formatAddress = (address) => {
-    const start = address.slice(0, 4);
-    const end = address.slice(-4);
-    const img = `<img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="x" style="width: 16px; height: 16px; vertical-align: middle;">`.repeat(4);
-    return (
-      <span dangerouslySetInnerHTML={{ __html: `${start}${img}${end}` }} />
-    );
   };
 
   const updateNetworkIcon = (chainId) => {
@@ -124,4 +133,5 @@ const MetaMask = ({ setWalletAddress, setNetworkName }) => {
   );
 };
 
-export default MetaMask;
+// Separate export statement
+export { MetaMask, networkDetails, formatAddress };

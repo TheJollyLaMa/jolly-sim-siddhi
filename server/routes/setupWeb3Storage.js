@@ -24,7 +24,7 @@ router.post('/setup-web3storage', async (req, res) => {
       fs.mkdirSync(tempDir);
     }
     const filePath = path.join(tempDir, 'email_address.json');
-    const fileContent = JSON.stringify({ email });
+    const fileContent = JSON.stringify({ email, walletAddress });
     fs.writeFileSync(filePath, fileContent);
     console.log('JSON file created at:', filePath);
 
@@ -57,8 +57,8 @@ router.post('/setup-web3storage', async (req, res) => {
         console.log('Parsed space lines:', spaceLines);
 
         const spaces = spaceLines.map(line => {
-          const [did, name] = line.trim().split(/\s+/);
-          return { did, name };
+          const [did, ...nameParts] = line.trim().split(/\s+/);
+          return { did, name: nameParts.join(' ') };
         });
 
         console.log('Parsed spaces:', spaces);
@@ -97,6 +97,19 @@ router.post('/setup-web3storage', async (req, res) => {
             // Optionally store the CID in the .env file
             fs.appendFileSync('.env', `\n${walletAddress}_PROOF=${cid}`);
             console.log('.env file updated with CID.');
+
+            // Save the CID to a master list file
+            const masterListPath = path.join(tempDir, 'master_list.json');
+            let masterList = [];
+
+            if (fs.existsSync(masterListPath)) {
+              const masterListContent = fs.readFileSync(masterListPath);
+              masterList = JSON.parse(masterListContent);
+            }
+
+            masterList.push({ walletAddress, cid });
+            fs.writeFileSync(masterListPath, JSON.stringify(masterList, null, 2));
+            console.log(`Master list updated with new entry: ${JSON.stringify({ walletAddress, cid })}`);
 
             res.status(200).send({ cid });
           });

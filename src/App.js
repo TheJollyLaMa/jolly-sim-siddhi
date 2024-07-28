@@ -13,6 +13,8 @@ function App() {
   const [walletAddress, setWalletAddress] = useState('No wallet connected');
   const [networkName, setNetworkName] = useState('Connect Wallet');
   const [showPopup, setShowPopup] = useState(true);
+  const [formattedAddress, setFormattedAddress] = useState('No wallet connected');
+  const [selectedAccount, setSelectedAccount] = useState(null);
 
   useEffect(() => {
     initWeb3(setWalletAddress, setNetworkName);
@@ -38,6 +40,10 @@ function App() {
             setNetworkName={setNetworkName}
             networkName={networkName}
             walletAddress={walletAddress}
+            formattedAddress={formattedAddress}
+            setFormattedAddress={setFormattedAddress}
+            selectedAccount={selectedAccount}
+            setSelectedAccount={setSelectedAccount}
           />
           <ThreeScene />
           <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress here */}
