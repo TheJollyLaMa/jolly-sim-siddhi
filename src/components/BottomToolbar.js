@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/Toolbar.css'; // Ensure you have the necessary styles
+import '../styles/Toolbar.css'; 
 
 const BottomToolbar = ({ walletAddress }) => {
   const [showInput, setShowInput] = useState(false);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [chatInput, setChatInput] = useState('');
+  const [chatMessages, setChatMessages] = useState([]);
 
-  const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc'; // Replace with your specific wallet address
+  const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc'; 
 
   const handleTranscribe = async () => {
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:3330/api/transcribe', { url: youtubeLink }); // Updated endpoint
+      await axios.post('http://localhost:3330/api/transcribe', { url: youtubeLink }); 
       console.log('Transcription complete! The file has been saved.');
     } catch (error) {
       console.error('Error transcribing video:', error);
@@ -21,9 +24,23 @@ const BottomToolbar = ({ walletAddress }) => {
     }
   };
 
-  useEffect(() => {
-    console.log('Wallet address:', walletAddress);
-  }, [walletAddress]);
+  const handleChatSubmit = async () => {
+    if (!chatInput.trim()) return;
+    setIsLoading(true);
+    const newMessages = [...chatMessages, { text: chatInput, isUser: true }];
+    setChatMessages(newMessages);
+    setChatInput('');
+
+    try {
+      const response = await axios.post('http://localhost:3330/api/chat', { message: chatInput });
+      const botMessage = response.data.text;
+      setChatMessages([...newMessages, { text: botMessage, isUser: false }]);
+    } catch (error) {
+      console.error('Error sending message to chat:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const isCorrectWallet = walletAddress && typeof walletAddress === 'string' && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase();
   console.log('Is correct wallet:', isCorrectWallet);
@@ -44,7 +61,7 @@ const BottomToolbar = ({ walletAddress }) => {
                 console.log('YouTube logo clicked');
                 setShowInput(true);
               }}
-              style={{ cursor: 'pointer' }} // Ensure the cursor indicates clickable
+              style={{ cursor: 'pointer' }} 
             />
           )}
           {showInput && (
@@ -62,6 +79,35 @@ const BottomToolbar = ({ walletAddress }) => {
               {isLoading && <div className="loading-spinner">Loading...</div>}
             </div>
           )}
+        </div>
+      )}
+      <img
+        src="https://bafybeia7dr3aeh53mmqxnpwfga2zflp2u6msvwih4iiziwrfxct5ti4of4.ipfs.w3s.link/SimSiddhiChat.png" // URL to your chat icon
+        alt="Chat Icon"
+        className="chat-icon"
+        onClick={() => setShowChat(!showChat)}
+        style={{ cursor: 'pointer', width: '50px', height: '50px', borderRadius: '5px' }}
+      />
+      {showChat && (
+        <div className="chat-window">
+          <div className="messages">
+            {chatMessages.map((msg, index) => (
+              <div key={index} className={`message ${msg.isUser ? 'user' : 'bot'}`}>
+                {msg.text}
+              </div>
+            ))}
+          </div>
+          <input
+            type="text"
+            value={chatInput}
+            onChange={(e) => setChatInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleChatSubmit()}
+            placeholder="Ask Sim Siddhi God..."
+            className="chat-input"
+          />
+          <button onClick={handleChatSubmit} className="send-button">
+            Send
+          </button>
         </div>
       )}
     </div>

@@ -51,7 +51,7 @@ Using W3Up Console
 
 ### Upcoming Milestones
 
-- 🚧 **User Authentication:** Implement secure user authentication using MetaMask.
+- 🚧 **OpenAi with Sim Siddhi Context:** Ask an OpenAi trained on the Decent Smart Home and Jolly Sim Siddhi way of life
 - 🚧 **Data Visualization:** Develop features for visualizing smart home data.
 - 🚧 **Advanced UI/UX:** Enhance the user interface and user experience.
 - 🚧 **Community Features:** Introduce features for community interaction and rewards.
@@ -65,10 +65,11 @@ Using W3Up Console
 - <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="20" height="20"> **MetaMask**
 - <img src="https://bafybeie7l66frjp4im2xrsd3wxlhwcve4bxuxqrvs6i3a33untc6mwwkgm.ipfs.w3s.link/node_logo.png" alt="Node Logo" width="20" height="20"> **Node.js**
 - <img src="https://bafybeififxtnn4lyvw72l4l7p2ux2qiumsgm4y6zmjf3jryhmzxhzifwym.ipfs.w3s.link/Github_Logo.png" alt="GitHub Logo" width="20" height="20"> **GitHub**
+- <img src="https://bafybeia7dr3aeh53mmqxnpwfga2zflp2u6msvwih4iiziwrfxct5ti4of4.ipfs.w3s.link/SimSiddhiChat.png" alt="SimSiddhi OpenAi Logo" width="20" height="20"> **OpenAi**
 
 ## 📖 Documentation
 
-For detailed documentation on how to set up and use the project, please refer to the [Wiki](https://github.com/TheJollyLaMa/jolly-sim-siddhi-react/wiki).
+For detailed documentation on how to set up and use the project, please refer to the [Wiki](https://github.com/TheJollyLaMa/jolly-sim-siddhi/wiki).
 
 ## 🤝 Contributing
 
@@ -86,5 +87,6 @@ If you have any questions or suggestions, feel free to reach out to us at [jolly
     <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="50" height="50">
     <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="50" height="50">
     <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="50" height="50">
+    <img src="https://bafybeia7dr3aeh53mmqxnpwfga2zflp2u6msvwih4iiziwrfxct5ti4of4.ipfs.w3s.link/SimSiddhiChat.png" alt="SimSiddhi OpenAi Logo" width="50" height="50">
     <img src="https://bafybeififxtnn4lyvw72l4l7p2ux2qiumsgm4y6zmjf3jryhmzxhzifwym.ipfs.w3s.link/Github_Logo.png" alt="GitHub Logo" width="50" height="50">
 </div>
