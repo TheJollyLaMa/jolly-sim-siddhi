@@ -6,9 +6,9 @@ const BottomToolbar = ({ walletAddress }) => {
   const [showInput, setShowInput] = useState(false);
   const [youtubeLink, setYoutubeLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showChat, setShowChat] = useState(false);
-  const [chatInput, setChatInput] = useState('');
-  const [chatMessages, setChatMessages] = useState([]);
+  const [showChat, setShowChat] = useState(false);  
+  const [chatInput, setChatInput] = useState('');  
+  const [chatMessages, setChatMessages] = useState([]);  
 
   const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc'; 
 
@@ -25,19 +25,23 @@ const BottomToolbar = ({ walletAddress }) => {
   };
 
   const handleChatSubmit = async () => {
-    if (!chatInput.trim()) return;
-    setIsLoading(true);
-    const newMessages = [...chatMessages, { text: chatInput, isUser: true }];
-    setChatMessages(newMessages);
-    setChatInput('');
-
+    if (!chatInput.trim()) {
+      console.error('Empty prompt. Please enter a valid message.');
+      return;
+    }
+  
     try {
-      const response = await axios.post('http://localhost:3330/api/chat', { message: chatInput });
-      const botMessage = response.data.text;
-      setChatMessages([...newMessages, { text: botMessage, isUser: false }]);
+      const response = await axios.post('http://localhost:3330/api/chat', { prompt: chatInput });
+      if (response.status === 200) {
+        setChatMessages([...chatMessages, { text: chatInput, isUser: true }, { text: response.data.text, isUser: false }]);
+      } else {
+        console.error('Unexpected response status:', response.status);
+      }
     } catch (error) {
       console.error('Error sending message to chat:', error);
+      console.log('Full error details:', error.response);
     } finally {
+      setChatInput('');
       setIsLoading(false);
     }
   };
@@ -87,6 +91,7 @@ const BottomToolbar = ({ walletAddress }) => {
         className="chat-icon"
         onClick={() => setShowChat(!showChat)}
         style={{ cursor: 'pointer', width: '50px', height: '50px', borderRadius: '5px' }}
+      
       />
       {showChat && (
         <div className="chat-window">
@@ -101,7 +106,7 @@ const BottomToolbar = ({ walletAddress }) => {
             type="text"
             value={chatInput}
             onChange={(e) => setChatInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleChatSubmit()}
+            onKeyDown={(e) => e.key === 'Enter' && handleChatSubmit()}
             placeholder="Ask Sim Siddhi God..."
             className="chat-input"
           />

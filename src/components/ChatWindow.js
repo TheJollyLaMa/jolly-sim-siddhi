@@ -1,55 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/ChatWindow.css';
 
-const ChatWindow = ({ onClose }) => {
+const ChatWindow = () => {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [inputMessage, setInputMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSend = async () => {
-    if (!input) return;
+  useEffect(() => {
+    console.log('Chat window initialized');
+  }, []);
 
-    const userMessage = { sender: 'user', text: input };
-    setMessages([...messages, userMessage]);
-    setInput('');
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim()) return;
+
+    setIsLoading(true);
+    console.log('Sending message:', inputMessage);
 
     try {
-      const response = await fetch('http://localhost:3330/api/chat', { // Update with your backend endpoint
+      const response = await fetch('http://localhost:3330/api/chat', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: input })
+        body: JSON.stringify({ message: inputMessage }),
       });
 
-      const data = await response.json();
-      const botMessage = { sender: 'bot', text: data.reply };
-      setMessages([...messages, userMessage, botMessage]);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let result = '';
+      let done = false;
+
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        result += decoder.decode(value, { stream: !done });
+
+        if (result.trim()) {
+          setMessages((prevMessages) => [...prevMessages, { text: result, isUser: false }]);
+          console.log('Received response:', result);
+        }
+      }
+
+      setMessages((prevMessages) => [...prevMessages, { text: result, isUser: false }]);
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Error sending message to chat:', error);
+    } finally {
+      setIsLoading(false);
+      setInputMessage('');
     }
+  };
+
+  const handleInputChange = (e) => {
+    setInputMessage(e.target.value);
   };
 
   return (
     <div className="chat-window">
-      <div className="chat-header">
-        <h4>Sim Siddhi God</h4>
-        <button onClick={onClose}>Close</button>
-      </div>
-      <div className="chat-body">
+      <div className="chat-messages">
         {messages.map((msg, index) => (
-          <div key={index} className={`chat-message ${msg.sender}`}>
+          <div key={index} className={`chat-message ${msg.isUser ? 'user-message' : 'bot-message'}`}>
             {msg.text}
           </div>
         ))}
       </div>
-      <div className="chat-footer">
+      <div className="chat-input">
         <input
           type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask a question..."
+          value={inputMessage}
+          onChange={handleInputChange}
+          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+          placeholder="Type your message here..."
         />
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleSendMessage} disabled={isLoading}>
+          {isLoading ? 'Sending...' : 'Send'}
+        </button>
       </div>
     </div>
   );

