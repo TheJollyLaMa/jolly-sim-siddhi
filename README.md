@@ -48,10 +48,10 @@ Using W3Up Console
 - ✅ **Basic UI:** Developed a basic user interface for smart home management.
 - ✅ **Web3.Storage Uploads:** Enabled file uploads via the web3.storage CLI.
 - ✅ **Logo Integration:** Added DecentSmartHome logo to the project.
+- ✅ **OpenAi with Sim Siddhi Context:** Ask an OpenAi trained on the Decent Smart Home and Jolly Sim Siddhi way of life
 
 ### Upcoming Milestones
 
-- 🚧 **OpenAi with Sim Siddhi Context:** Ask an OpenAi trained on the Decent Smart Home and Jolly Sim Siddhi way of life
 - 🚧 **Data Visualization:** Develop features for visualizing smart home data.
 - 🚧 **Advanced UI/UX:** Enhance the user interface and user experience.
 - 🚧 **Community Features:** Introduce features for community interaction and rewards.
