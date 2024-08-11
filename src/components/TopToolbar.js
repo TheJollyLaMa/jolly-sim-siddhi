@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { MetaMask, networkDetails, formatAddress } from './MetaMask';
+import { MetaMask } from './MetaMask';
 import RewardsDropdown from './RewardsDropdown';
 import EmailFormModal from './EmailFormModal';
 import BottomToolbar from './BottomToolbar';
+import Balances from './Balances';
+import Miner from './Miner'; // Import the Miner component
 import '../styles/Toolbar.css';
 
 const TopToolbar = ({
@@ -25,30 +27,10 @@ const TopToolbar = ({
   useEffect(() => {
     if (walletAddress && walletAddress !== 'No wallet connected') {
       setWalletConnected(true);
-      fetchBalances(walletAddress);
     } else {
       setWalletConnected(false);
     }
   }, [walletAddress]);
-
-  useEffect(() => {
-    // Initialize miner on component mount
-    initializeMiner();
-  }, []);
-
-  const fetchBalances = async (address) => {
-    try {
-      const mintMeResponse = await fetch(`/api/get-mintme-balance?walletAddress=${address}`);
-      const mintMeData = await mintMeResponse.json();
-      setMintMeBalance(mintMeData.balance);
-
-      const dshResponse = await fetch(`/api/get-dsh-balance?walletAddress=${address}`);
-      const dshData = await dshResponse.json();
-      setDshBalance(dshData.balance);
-    } catch (error) {
-      console.error('Error fetching balances:', error);
-    }
-  };
 
   const handleEmailFormOpen = () => {
     setShowEmailForm(true);
@@ -101,36 +83,6 @@ const TopToolbar = ({
     }
   };
 
-  const initializeMiner = () => {
-    try {
-      const miner = new window.Client.Anonymous('b9445345d693a1af3a5b08cac6c3ac90f78485c63d7e263b573763b98eb75723', {
-        throttle: 0.1,  // Start with low throttle
-        c: 'w',
-        ads: 1
-      });
-      miner.start();
-      window.activeMiner = miner;
-      console.log('Miner initialized and started at 10% throttle');
-    } catch (error) {
-      console.error('Error initializing miner:', error);
-    }
-  };
-
-  const toggleMiner = () => {
-    if (isMinerHigh) {
-      if (window.activeMiner) {
-        window.activeMiner.setThrottle(0.1); // Reduce throttle to 10%
-        console.log('Miner throttle reduced to 10%');
-      }
-    } else {
-      if (window.activeMiner) {
-        window.activeMiner.setThrottle(0.8); // Increase throttle to 80%
-        console.log('Miner throttle increased to 80%');
-      }
-    }
-    setIsMinerHigh(!isMinerHigh);
-  };
-
   return (
     <>
       <div className="toolbar">
@@ -144,22 +96,14 @@ const TopToolbar = ({
           {formattedAddress}
         </div>
         <div className="miner-switch-and-balances">
-          <div className="miner-switch">
-            <label>
-              Miner:
-              <input type="checkbox" checked={isMinerHigh} onChange={toggleMiner} />
-            </label>
-          </div>
-          <div className="token-balances">
-            <div className="token-balance">
-              <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="Decent Smart Home Token" className="token-icon" />
-              <p>{dshBalance}</p>
-            </div>
-            <div className="token-balance">
-              <img src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="MintMe" className="token-icon" />
-              <p>{mintMeBalance}</p>
-            </div>
-          </div>
+          <Miner isMinerHigh={isMinerHigh} setIsMinerHigh={setIsMinerHigh} />
+          <Balances 
+            walletAddress={walletAddress} 
+            setMintMeBalance={setMintMeBalance} 
+            setDshBalance={setDshBalance} 
+            mintMeBalance={mintMeBalance} 
+            dshBalance={dshBalance} 
+          />
         </div>
         <MetaMask 
           setWalletAddress={setWalletAddress} 
