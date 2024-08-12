@@ -52,10 +52,10 @@ Using W3Up Console
 
 ### Upcoming Milestones
 
-- 🚧 **Data Visualization:** Develop features for visualizing smart home data.
+- 🚧 **Smart Contracts:** Integrate rewards contracts with solidity.
+- 🚧 **Data Visualization:** Develop features for visualizing the Decent Community's set of data. 
 - 🚧 **Advanced UI/UX:** Enhance the user interface and user experience.
-- 🚧 **Community Features:** Introduce features for community interaction and rewards.
-- 🚧 **Smart Contracts:** Integrate smart contracts for automated device management.
+- 🚧 **Community Features:** Introduce features for community interaction like proposition voting and microlending.
 
 ## 🛠️ Technologies Used
 
