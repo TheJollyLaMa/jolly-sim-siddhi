@@ -9,6 +9,12 @@
     <h3>Decent Smarthome 4.0</h3>
 </div>
 
+
+<div align="center">
+    	<img height="250px" width="250px" src="https://bafybeihxmfvvns25fkvqosh6mug6ysqptko2hovy55axgpz7uyausftlvi.ipfs.w3s.link/Screenshot%202024-08-14%20at%205.19.02%E2%80%AFPM.png">
+</div>
+
+
 ## 🌟 Project Description
 
 Jolly Sim Siddhi is an innovative project aimed at revolutionizing the smart home ecosystem using decentralized technologies. Our platform leverages the power of blockchain and IPFS to create a secure, transparent, and efficient smart home experience. With Jolly Sim Siddhi, users can seamlessly connect and manage their smart home devices, share data securely, and earn rewards for contributing to the community value. Data collected from community members who choose to share it is used to improve algorithms that are released back to the community in an opensource manner. This allows the community to benefit from and incentivize what works best in various locations. As successful community members share their path to success and abundance at home, their security spreads to surrounding community members willing and able to adopt a similar lifestyle. Localized optimizations communicate automatically with oracles to suggest changes to households that are just beginning to come online. Archived data allows anyone to improve upon their local situation by learning from the past. This is the future of smart home technology. This is Jolly Sim Siddhi. Creating and propagating abundance in the home and sharing that abundance on a global, publicly verifiable market.
