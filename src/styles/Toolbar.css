@@ -48,7 +48,7 @@
   width: 100%;
   background-color: #f1f1f1;
   display: flex;
-  justify-content: center; /* Center content horizontally */
+  justify-content: flex-start; /* Align items to the left */
   align-items: center;
   padding: 10px;
   position: relative; /* Enable positioning of child elements */
@@ -57,16 +57,16 @@
 #bottomArrow {
   cursor: pointer;
   position: absolute;
-  left: 50%; /* Center the arrow horizontally */
-  transform: translateX(-50%); /* Adjust position to truly center */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .youtube-section {
   display: flex;
   align-items: center;
   position: absolute;
-  right: 10px; /* Position YouTube section to the right */
-  bottom: 10px; /* Position YouTube section to the bottom */
+  right: 10px;
+  bottom: 10px;
 }
 
 .youtube-logo {
@@ -104,53 +104,19 @@
   border-radius: 3px;
 }
 
-.miner-switch-and-balances {
+.chat-icons {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin: 3px;
+  gap: 10px; /* Space between the icons */
+  margin-right: auto; /* Ensure the icons are on the left */
 }
 
-.token-balances {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.token-balance {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin: 3px;
-}
-
-.token-icon {
-  width: 24px;
-  height: 24px;
-  margin: 3px;
-}
-
-.miner-switch {
-  display: flex;
-  align-items: center;
-}
-
-#formattedAddress {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-}
-
-.chat-icon {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
+.chat-icon, .doctor-buddha-icon {
   cursor: pointer;
   z-index: 1000;
-  width: '50px';
-  height: '50px';
-  border-radius: '5px'
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
 }
 
 .chat-window {
@@ -204,4 +170,75 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.miner-switch-and-balances {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px;
+}
+
+.token-balances {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.token-balance {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px;
+}
+
+.token-icon {
+  width: 24px;
+  height: 24px;
+  margin: 3px;
+}
+
+.miner-switch {
+  display: flex;
+  align-items: center;
+}
+
+#formattedAddress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+
+
+.arbitrage-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.arbitrage-results {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1500;
 }

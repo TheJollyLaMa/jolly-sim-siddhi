@@ -23,6 +23,8 @@ const TopToolbar = ({
   const [isMinerHigh, setIsMinerHigh] = useState(false);
   const [mintMeBalance, setMintMeBalance] = useState(0);
   const [dshBalance, setDshBalance] = useState(0);
+  const [arbitrageData, setArbitrageData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (walletAddress && walletAddress !== 'No wallet connected') {
@@ -82,6 +84,25 @@ const TopToolbar = ({
       console.error('Error setting up web3.storage:', error);
     }
   };
+  const runArbitrageBot = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:3330/api/arbitrage', {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to run arbitrage bot');
+      }
+
+      const data = await response.json();
+      setArbitrageData(data);
+    } catch (error) {
+      console.error('Error running arbitrage bot:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -95,6 +116,13 @@ const TopToolbar = ({
         <div id="formattedAddress">
           {formattedAddress}
         </div>
+        <img
+    src="https://bafybeihx7bjavlb6uicr4d3osgrduatte3jtsfrfs2exrymmauw4dbgwvm.ipfs.w3s.link/SimSiddhiDefi.png"
+    alt="Sim Siddhi Defi Icon"
+    className="arbitrage-button"
+    onClick={() => runArbitrageBot()} // Replace with your function
+    style={{ cursor: 'pointer', width: '50px', height: '50px', borderRadius: '5px' }}
+/>
         <div className="miner-switch-and-balances">
           <Miner isMinerHigh={isMinerHigh} setIsMinerHigh={setIsMinerHigh} />
           <Balances 
@@ -117,6 +145,17 @@ const TopToolbar = ({
           onSubmit={handleEmailSubmit}
         />
       </div>
+
+      {loading && <div className="loading">Loading...</div>}
+
+      {arbitrageData && (
+        <div className="arbitrage-results">
+          <h3>Arbitrage Results</h3>
+          <pre>{JSON.stringify(arbitrageData, null, 2)}</pre>
+        </div>
+      )}
+
+
       <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress to BottomToolbar */}
     </>
   );

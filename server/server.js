@@ -25,7 +25,11 @@ const setupWeb3StorageRoutes = require('./routes/setupWeb3Storage');
 const landSurveyRoutes = require('./routes/landSurvey');
 const waterSurveyRoutes = require('./routes/waterSurvey');
 const getTokenBalanceRoutes = require('./routes/getTokenBalance');
-const chatRoutes = require('./routes/chat');
+const simSiddhiChatRoutes = require('./routes/simSiddhiChat');
+const doctorBuddhaChatRoutes = require('./routes/doctorBuddhaChat');
+const wotserWellChatRoutes = require('./routes/wotserWellChat');
+const vectorStoreRoutes = require('./routes/vectorStore');
+const arbitrageRoutes = require('./routes/arbitrage');
 
 app.use('/api', emailRoutes);
 app.use('/api', coordinatesRoutes);
@@ -36,8 +40,11 @@ app.use('/api', setupWeb3StorageRoutes);
 app.use('/api', landSurveyRoutes);
 app.use('/api', waterSurveyRoutes); 
 app.use('/api', getTokenBalanceRoutes);
-app.use('/api', chatRoutes);
-
+app.use('/api', simSiddhiChatRoutes);
+app.use('/api', doctorBuddhaChatRoutes);
+app.use('/api', wotserWellChatRoutes);
+app.use('/api', vectorStoreRoutes);
+app.use('/api', arbitrageRoutes);
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Hello from the server!' });

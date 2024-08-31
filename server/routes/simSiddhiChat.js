@@ -7,10 +7,11 @@ const openai = new OpenAI({
   project: process.env.OPENAI_PROJECT_ID,
 });
 
-const assistantId = process.env.OPENAI_ASSISTANT_ID || 'asst_xImFud4ZmnpqGZigTAYsCdnY';
-const threadId = process.env.OPENAI_THREAD_ID || 'thread_JxWqE2YvvjU0hmkXsFBMqnPd';
+const assistantId = process.env.OPENAI_SimSiddhi_ASSISTANT_ID;
+const threadId = process.env.OPENAI_SimSiddhi_THREAD_ID;
 
-router.post('/chat', async (req, res) => {
+router.post('/simSiddhiChat', async (req, res) => {
+  
   const { message } = req.body;
 
   console.log('Message received:', message);
@@ -38,7 +39,7 @@ router.post('/chat', async (req, res) => {
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
-      Connection: 'keep-alive',
+      'Connection': 'keep-alive',
     });
   
     // Log and stream the events back to the client
@@ -62,6 +63,28 @@ router.post('/chat', async (req, res) => {
     console.error('Error running assistant:', error.response ? error.response.data : error.message);
     res.status(error.response ? error.response.status : 500).json({ error: 'Failed to run assistant' });
   }
+});
+
+router.get('/simSiddhiChat', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.flushHeaders(); // Sends the headers and starts the SSE
+
+  res.write( 'message: Hello from the simSiddhiChat route!' );
+
+  // Send a message every 5 seconds
+  const intervalId = setInterval(() => {
+    res.write('data: Still here...\n\n');
+  }, 5000);
+  
+  // Clean up on client disconnect
+  res.on('close', () => {
+    clearInterval(intervalId);
+    res.end();
+  });
+
+
 });
 
 module.exports = router;
