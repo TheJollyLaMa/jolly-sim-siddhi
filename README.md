@@ -97,6 +97,8 @@ If you have any questions or suggestions, feel free to reach out to us at [jolly
     <img src="https://bafybeie7l66frjp4im2xrsd3wxlhwcve4bxuxqrvs6i3a33untc6mwwkgm.ipfs.w3s.link/node_logo.png" alt="Node Logo" width="50" height="50">
     <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="50" height="50">
     <img src="https://bafybeia7dr3aeh53mmqxnpwfga2zflp2u6msvwih4iiziwrfxct5ti4of4.ipfs.w3s.link/SimSiddhiChat.png" alt="SimSiddhi OpenAi Logo" width="50" height="50">
+    <img src="https://bafybeid6y5ibkrn2y7ddkolpzo53i7rbdbjxscmivbrmq4vtrapnl6l5wa.ipfs.w3s.link/DoctorBuddha.png" alt="Doctor Buddha" width="50" height="50">
+    <img src="https://bafybeidpjh43gomls6rkxym4cbetd6cufc7y3uhplgo5ur7ufjeg5fdghi.ipfs.w3s.link/WOTSERWell.jpeg" alt="WotserWell" width="50" height="50">
     <img src="https://bafybeicft2vkf4jfqex4j2xjr5t2yzrdlticyboc2gbf325ztjqpv5ng24.ipfs.w3s.link/MetaMaskFox.png" alt="MetaMask Logo" width="50" height="50">
     <br>
     Keep Your Data Decent!
