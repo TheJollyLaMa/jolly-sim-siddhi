@@ -19,22 +19,26 @@ app.use(express.static(path.join(__dirname, '../public')));
 const emailRoutes = require('./routes/email');
 const coordinatesRoutes = require('./routes/coordinates');
 const capabilitiesRoutes = require('./routes/capabilities');
-const transcribeRoutes = require('./routes/transcribe');
+
 const rewardsRoutes = require('./routes/rewards');
 const setupWeb3StorageRoutes = require('./routes/setupWeb3Storage');
 const landSurveyRoutes = require('./routes/landSurvey');
 const waterSurveyRoutes = require('./routes/waterSurvey');
 const getTokenBalanceRoutes = require('./routes/getTokenBalance');
+
+
 const simSiddhiChatRoutes = require('./routes/simSiddhiChat');
 const doctorBuddhaChatRoutes = require('./routes/doctorBuddhaChat');
 const wotserWellChatRoutes = require('./routes/wotserWellChat');
+const transcriptionRoutes = require('./routes/transcription');
 const vectorStoreRoutes = require('./routes/vectorStore');
+
 const arbitrageRoutes = require('./routes/arbitrage');
 
 app.use('/api', emailRoutes);
 app.use('/api', coordinatesRoutes);
 app.use('/api', capabilitiesRoutes);
-app.use('/api', transcribeRoutes);
+app.use('/api', transcriptionRoutes);
 app.use('/api', rewardsRoutes);
 app.use('/api', setupWeb3StorageRoutes);
 app.use('/api', landSurveyRoutes);
