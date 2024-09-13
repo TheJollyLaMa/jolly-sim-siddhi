@@ -119,59 +119,6 @@
   border-radius: 5px;
 }
 
-.chat-window {
-  position: fixed;
-  bottom: 70px;
-  left: 10px;
-  width: 300px;
-  height: 400px;
-  background: rgba(255, 255, 255, 0.326);
-  color: rgba(29, 25, 25, 0.576);
-  padding: 10px;
-  border-radius: 10px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-}
-
-.messages {
-  flex: 1;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
-
-.message {
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-.message.user {
-  background-color: #00e5ff4b;
-  align-self: flex-end;
-}
-
-.message.bot {
-  background-color: #5d00ff33;
-  align-self: flex-start;
-}
-
-.chat-input {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.send-button {
-  padding: 10px;
-  background-color: #ffaa0089;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .miner-switch-and-balances {
   display: flex;
   align-items: center;

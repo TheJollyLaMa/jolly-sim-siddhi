@@ -10,7 +10,7 @@ const router = express.Router();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 router.post('/transcribeAndStore', async (req, res) => {
-  const { url, vectorStoreId } = req.body;
+  const { url, vectorStoreId, createNewVectorStoreName, uploadFileToOpenAi, uploadFileToW3up } = req.body;
   // log the incoming variables with a message
   console.log('Transcribing and storing:', url, vectorStoreId);
 
@@ -18,7 +18,6 @@ router.post('/transcribeAndStore', async (req, res) => {
   const chunksDir = path.join(__dirname, '..', 'chunks');
 
 
-  // const transcriptionFilePath = path.join(__dirname, '..', 'transcription.txt');
 
   if (!fs.existsSync(chunksDir)) fs.mkdirSync(chunksDir);
 
@@ -31,8 +30,11 @@ router.post('/transcribeAndStore', async (req, res) => {
 
     // Sanitize title for file name
     const sanitizedTitle = title.replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '_');
-    const transcriptionFilePath = path.join(__dirname, '..', `${sanitizedTitle}.txt`);
-        
+    const transcriptionFileName = sanitizedTitle;
+    const transcriptionFilePath = path.join(__dirname, '../WOTS_Transcripts', `${sanitizedTitle}.txt`);
+    // log the transcription file path
+    console.log('Transcription file path:', transcriptionFilePath);
+    
     // Download and process audio from YouTube
     await youtubedl(url, {
       extractAudio: true,
@@ -81,9 +83,38 @@ router.post('/transcribeAndStore', async (req, res) => {
 
         console.log('Transcription uploaded to vector store:', myVectorStoreFile);
         res.json({ message: 'Transcription completed and added to vector store', myVectorStoreFile });
+
+      } else if (createNewVectorStoreName) {
+        // create new vector store 
+        const newVectorStore = await openai.beta.vectorStores.create({ name: createNewVectorStoreName });
+        // create new vector store file
+        const file = await openai.files.create({
+          file: fs.createReadStream
+          (transcriptionFilePath),
+          purpose: "assistants",
+        });
+        console.log(file);
+        const myVectorStoreFile = await openai.beta.vectorStores.files.create(
+          newVectorStore.id,
+          { file_id: file.id }
+          );
+        console.log('Transcription uploaded to new vector store:', myVectorStoreFile);
+
+      } else if (uploadFileToOpenAi) {
+        // create new vector store file
+        const file = await openai.files.create({
+          file: fs
+          .createReadStream(transcriptionFilePath),
+          purpose: "assistants"
+        });
+        console.log('Uploaded file to openAi project Files: \n',file);
+
+      } else if (uploadFileToW3up) {
+        pass
+
       } else {
         // Send a message and the transcription back as a text file
-        res.json({ message: 'Transcription completed', transcription: transcriptionFilePath });
+        res.json({ message: 'Transcription completed', transcriptionFilePath: transcriptionFilePath, transcriptionFileName: transcriptionFileName });
       }
     } catch (error) {
       console.error('Error during transcription or uploading:', error);

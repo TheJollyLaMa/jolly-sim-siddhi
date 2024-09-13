@@ -1,0 +1,76 @@
+.chat-window {
+    position: fixed;
+    bottom: 70px;
+    left: 10px;
+    width: 300px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.326);
+    color: rgba(29, 25, 25, 0.576);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  
+    /* Make the chat window resizable but limit its size */
+    resize: both;
+    overflow: auto;
+  
+    /* Prevent the window from resizing too large */
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 200px;
+    min-height: 300px;
+  }
+  
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  
+    /* Ensure messages are left-aligned */
+    text-align: left;
+  }
+  
+  .message {
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  
+    /* Fix word wrapping for natural text flow */
+    white-space: normal;      /* Ensure normal line breaks */
+    word-wrap: break-word;    /* Break long words if necessary */
+    word-break: normal;       /* Ensure normal word breaks */
+  
+    /* Ensure text is left-aligned */
+    text-align: left;
+  }
+  
+  .message.user-message {
+    background-color: #00e5ff4b;
+    align-self: flex-end;
+  }
+  
+  .message.bot-message {
+    background-color: #5d00ff33;
+    align-self: flex-start;
+  }
+  
+  .chat-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .send-button {
+    padding: 10px;
+    background-color: #ffaa0089;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
