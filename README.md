@@ -55,6 +55,9 @@ Using W3Up Console
 - ✅ **Web3.Storage Uploads:** Enabled file uploads via the web3.storage CLI.
 - ✅ **Logo Integration:** Added DecentSmartHome logo to the project.
 - ✅ **OpenAi with Sim Siddhi Context:** Ask an OpenAi trained on the Decent Smart Home and Jolly Sim Siddhi way of life
+- ✅ **OpenAi with Doctor Buddha Context:** Ask an OpenAi trained on the latest health topics relevant to your unique situation! Give Dr. Buddha your health data to look for associations and suggestions. Give it the latest YouTube videos to transcribe so it's up to date with the latest presentations that are relevant to your health.
+- ✅ **OpenAi with WotserWell Context:** OpenAi Assistant that taps into a vector store of Wisdom of the Sages Episodes for vedic wisdom as presented by Raghunath and Kaustubha Das. This is a great way to get a quick answer to a question or to get a quick dose of wisdom from the sages! 
+- ✅ **Asteroid Belt:** Just a cool visual for now but will soon be a functional AsteRoids type game. 
 
 ### Upcoming Milestones
 
@@ -62,6 +65,7 @@ Using W3Up Console
 - 🚧 **Data Visualization:** Develop features for visualizing the Decent Community's set of data. 
 - 🚧 **Advanced UI/UX:** Enhance the user interface and user experience.
 - 🚧 **Community Features:** Introduce features for community interaction like proposition voting and microlending.
+- 🚧 **Gamification:** Introducing some games to explore the benefits of gamification for introducing people to Web3 and the Decent Smart Home Sim Siddhi way of life.
 
 ## 🛠️ Technologies Used
 
