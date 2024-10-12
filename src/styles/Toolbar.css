@@ -11,6 +11,8 @@
 #connectSmartHomeDropdown {
   width: auto;
   z-index: 2500; /* Ensure the dropdown is on top */
+  background: linear-gradient(90deg, #a33da1ba, #6909faae, #02ffffa4);
+
 }
 
 .scrollable-menu {
@@ -18,6 +20,8 @@
   overflow-y: auto;
   z-index: 2500; /* Ensure the menu is on top of other elements */
   position: relative;
+  /* background gradient */
+  background: linear-gradient(90deg, #a33da1ba, #6909faae, #02ffffa4);
 }
 
 .dropdown-item-with-switch {
@@ -126,23 +130,55 @@
   margin: 10px;
 }
 
+
 .token-balances {
   display: flex;
-  align-items: center;
-  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .token-balance {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin: 10px;
+  padding: 10px;
+  background-color: #00000000;
+  font-weight: bold;
+  font-size: 12px;
+  color: #4ba33dba;
 }
 
 .token-icon {
-  width: 24px;
-  height: 24px;
-  margin: 3px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+}
+
+/* Shimmer effect for the text */
+.token-balance p {
+  margin: 0;
+  font-size: 1.1em;
+  background: linear-gradient(90deg, #4ba33dba, #9cf883, #4ba33dba); /* Shimmer colors */
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text; /* Define the standard property 'background-clip' */
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .miner-switch {
@@ -150,14 +186,31 @@
   align-items: center;
 }
 
+.miner-switch label {
+  margin: 0;
+  font-size: 1.1em;
+  background: linear-gradient(90deg, #3d5da3ba, #4a8f92da, #3d5da3ba); /* Shimmer colors */
+  background-size: 200% 200%;
+  -webkit-background-clip: text; 
+  background-clip: text; /* Define the standard property 'background-clip' */
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s infinite;
+}
+
 #formattedAddress {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  margin: 0;
+  font-size: 1.1em;
+  background: linear-gradient(90deg, #3d5da3ba, #22cda8da, #3d5da3ba); /* Shimmer colors */
+  background-size: 200% 200%;
+  -webkit-background-clip: text; 
+  background-clip: text; /* Define the standard property 'background-clip' */
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s infinite;
 }
-
-
 
 .arbitrage-button {
   background-color: transparent;

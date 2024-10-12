@@ -11,7 +11,7 @@
 
 
 <div align="center">
-    	<img height=auto width=auto src="https://bafybeia3lvzirsc7kh7h422msdata22zbec6z3mivl7n4qtfkdo7r4c5fe.ipfs.w3s.link/prototype_screenshot.png">
+    	<img height=auto width=auto src="https://bafybeigrzklvc7d7z5ieuku3bmhb4rtf4dgx6hd2i2cyuokcrqkfklocnm.ipfs.w3s.link/Screenshot 2024-10-12 at 7.38.56 AM.png">
 </div>
 
 

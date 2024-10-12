@@ -29,7 +29,7 @@ const getTokenBalanceRoutes = require('./routes/getTokenBalance');
 
 const simSiddhiChatRoutes = require('./routes/simSiddhiChat');
 const doctorBuddhaChatRoutes = require('./routes/doctorBuddhaChat');
-const wotserWellChatRoutes = require('./routes/wotserWellChat');
+const wotserWellChatRoutes = require('./routes/WOTSerWellChat');
 const transcriptionRoutes = require('./routes/transcription');
 const vectorStoreRoutes = require('./routes/vectorStore');
 

@@ -21,6 +21,8 @@ const TopToolbar = ({
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [walletConnected, setWalletConnected] = useState(false);
   const [isMinerHigh, setIsMinerHigh] = useState(false);
+  const [ethBalance, setEthBalance] = useState(0);
+  const [polBalance, setPolBalance] = useState(0);
   const [mintMeBalance, setMintMeBalance] = useState(0);
   const [dshBalance, setDshBalance] = useState(0);
   const [arbitrageData, setArbitrageData] = useState(null);
@@ -127,8 +129,12 @@ const TopToolbar = ({
           <Miner isMinerHigh={isMinerHigh} setIsMinerHigh={setIsMinerHigh} />
           <Balances 
             walletAddress={walletAddress} 
+            setEthBalance={setEthBalance}
+            setPolBalance={setPolBalance}
             setMintMeBalance={setMintMeBalance} 
-            setDshBalance={setDshBalance} 
+            setDshBalance={setDshBalance}
+            ethBalance={ethBalance}
+            polBalance={polBalance} 
             mintMeBalance={mintMeBalance} 
             dshBalance={dshBalance} 
           />

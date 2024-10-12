@@ -5,12 +5,14 @@ import YoutubeTranscriber from './YouTubeTranscriber';
 import '../styles/Toolbar.css';
 
 const BottomToolbar = ({ walletAddress }) => {
-  const [showSimSiddhiChat, setShowSimSiddhiChat] = useState(false);
-  const [showDoctorBuddhaChat, setShowDoctorBuddhaChat] = useState(false);
-  const [showWotserWellChat, setShowWotserWellChat] = useState(false);
+  const [activeChat, setActiveChat] = useState(null); // Track the active chat window
 
   const correctWalletAddress = '0x807061df657a7697c04045da7d16d941861caabc';
   const isCorrectWallet = walletAddress && typeof walletAddress === 'string' && walletAddress.toLowerCase() === correctWalletAddress.toLowerCase();
+
+  const handleChatSelection = (chatName) => {
+    setActiveChat(chatName); // Set the active chat window
+  };
 
   return (
     <div id="bottomToolbar">
@@ -19,13 +21,34 @@ const BottomToolbar = ({ walletAddress }) => {
       </div>
       {isCorrectWallet && <YoutubeTranscriber />}
       <ChatIcons
-        setShowSimSiddhiChat={setShowSimSiddhiChat}
-        setShowDoctorBuddhaChat={setShowDoctorBuddhaChat}
-        setShowWotserWellChat={setShowWotserWellChat}
+        setShowSimSiddhiChat={() => handleChatSelection('simSiddhiChat')}
+        setShowDoctorBuddhaChat={() => handleChatSelection('doctorBuddhaChat')}
+        setShowWotserWellChat={() => handleChatSelection('wotserWellChat')}
       />
-      {showSimSiddhiChat && <ChatWindow title="Sim Siddhi Chat" placeholder="Ask Sim Siddhi God ⚸ 🌱 🐄" apiEndpoint="simSiddhiChat" />}
-      {showDoctorBuddhaChat && <ChatWindow title="Doctor Buddha Chat" placeholder="⚕️⚸ Ask Doctor Buddha 🧞‍♂️⚕️" apiEndpoint="doctorBuddhaChat" />}
-      {showWotserWellChat && <ChatWindow title="The WOTSer Well" placeholder=" 🧞‍♂️ The WOTSer Well ⚸ ⛲️ 🐄" apiEndpoint="wotserWellChat" />}
+
+      {activeChat === 'simSiddhiChat' && (
+        <ChatWindow 
+          title="Sim Siddhi Chat" 
+          placeholder="Ask Sim Siddhi God ⚸ 🌱 🐄" 
+          apiEndpoint="simSiddhiChat" 
+        />
+      )}
+      
+      {activeChat === 'doctorBuddhaChat' && (
+        <ChatWindow 
+          title="Doctor Buddha Chat" 
+          placeholder="⚕️⚸ Ask Doctor Buddha 🧞‍♂️⚕️" 
+          apiEndpoint="doctorBuddhaChat" 
+        />
+      )}
+
+      {activeChat === 'wotserWellChat' && (
+        <ChatWindow 
+          title="The WOTSer Well" 
+          placeholder=" 🧞‍♂️ The WOTSer Well ⚸ ⛲️ 🐄" 
+          apiEndpoint="wotserWellChat" 
+        />
+      )}
     </div>
   );
 };
