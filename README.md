@@ -102,6 +102,7 @@ If you have any questions or suggestions, feel free to reach out to us at [jolly
     <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="50" height="50">
     <img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="Ens_Eth_Breathe Logo" width="50" height="50">
     <img src="https://bafybeie7l66frjp4im2xrsd3wxlhwcve4bxuxqrvs6i3a33untc6mwwkgm.ipfs.w3s.link/node_logo.png" alt="Node Logo" width="50" height="50">
+    <img src="https://bafybeicpv5ao6nyxhdln45jrd4gslyhrsagq72vvzmdpb2tsbm2vkz5jc4.ipfs.w3s.link/solidity.png" alt="Solidity Logo" width="50" height="50">
     <img src="https://bafybeidxx2mbmne45dqr5c572ynzly6asn7qns6uvdyhak7576nygcu4ym.ipfs.w3s.link/IPFS_Logo.png" alt="IPFS Logo" width="50" height="50">
     <img src="https://bafybeia7dr3aeh53mmqxnpwfga2zflp2u6msvwih4iiziwrfxct5ti4of4.ipfs.w3s.link/SimSiddhiChat.png" alt="SimSiddhi OpenAi Logo" width="50" height="50">
     <img src="https://bafybeid6y5ibkrn2y7ddkolpzo53i7rbdbjxscmivbrmq4vtrapnl6l5wa.ipfs.w3s.link/DoctorBuddha.png" alt="Doctor Buddha" width="50" height="50">
