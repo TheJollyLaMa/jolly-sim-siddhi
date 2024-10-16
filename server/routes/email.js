@@ -1,44 +1,40 @@
 const express = require('express');
-const { Blob } = require('buffer');
+const { exec } = require('child_process'); // Import child_process for executing shell commands
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 const router = express.Router();
-
-const parseProof = require('../helpers/parseProof').parseProof;
 
 router.post('/submit-email', async (req, res) => {
   const { email } = req.body;
   if (!email) {
     return res.status(400).send({ error: 'Email is required' });
   }
-
+  console.log('Email submitted:', email);
   try {
-    const { create } = await import('@web3-storage/w3up-client');
-    const { Signer: EdSigner } = await import('@ucanto/principal/ed25519');
-    const { StoreMemory } = await import('@web3-storage/w3up-client/stores/memory');
+    // Create a temporary file to store the email
+    const emailFilePath = path.join(__dirname, 'email.txt');
+    fs.writeFileSync(emailFilePath, email, 'utf8');
 
-    console.log('Creating principal from W3UP_KEY_PRIVATE...');
-    const privateKey = process.env.W3UP_KEY_PRIVATE;
-    console.log('Private key:', privateKey);
+    // Run the 'w3 up' command to upload the file to web3.storage
+    exec(`w3 up ${emailFilePath}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error uploading file: ${error.message}`);
+        return res.status(500).send({ error: 'Error uploading file', details: error.message });
+      }
 
-    const principal = EdSigner.parse(privateKey);
-    console.log('Principal created:', principal);
+      if (stderr) {
+        console.error(`Error output: ${stderr}`);
+        // return res.status(500).send({ error: 'Error output during upload', details: stderr });
+      }
 
-    const store = new StoreMemory();
-    const client = await create({ principal, store });
-
-    console.log('Parsing proof...');
-    const proof = await parseProof(process.env.PROOF);
-    const space = await client.addSpace(proof);
-    await client.setCurrentSpace(space.did());
-
-    const emailBlob = new Blob([email], { type: 'text/plain' });
-    const cid = await client.uploadFile(emailBlob);
-
-    console.log('Uploaded email CID:', cid);
-    res.status(200).send({ cid });
+      // Extract CID from the output
+      console.log(`File uploaded successfully: ${stdout}`);
+      res.status(200).send({ message: 'File uploaded successfully', output: stdout });
+    });
   } catch (error) {
-    console.error('Error uploading file:', error);
-    res.status(500).send({ error: 'Error uploading file' });
+    console.error('Error creating or uploading file:', error);
+    res.status(500).send({ error: 'Error uploading file', details: error.message });
   }
 });
 

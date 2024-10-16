@@ -65,7 +65,7 @@ router.get('/get-dsh-balance', async (req, res) => {
     // Call the balanceOf function from the contract
     const balance = await shtContract.methods.balanceOf(walletAddress).call();
     // console.log('balance:', balance);
-    const formattedBalance = Number(balance).toFixed(4);  // Adjust the decimal places as needed
+    const formattedBalance = (Number(balance) / Math.pow(10, 18)).toFixed(4);  // Adjust the decimal places as needed
     // console.log('formattedBalance:', formattedBalance);
     res.json({ balance: formattedBalance });
   

@@ -81,9 +81,9 @@ const RewardsDropdown = ({ walletConnected, setupWeb3Storage, handleEmailFormOpe
       onClick={setupWeb3Storage} // Call setupWeb3Storage when the button is clicked
     >
       <div className="scrollable-menu" style={{ zIndex: 2000, position: 'relative' }}>
-        {renderMenuItem('IPFS Pin Time')}
-        <Dropdown.Divider />
         {renderMenuItem('Email & Contact Form')}
+        <Dropdown.Divider />
+        {renderMenuItem('IPFS Pin Time')}
         <Dropdown.Divider />
         {renderMenuItem('Coordinate Form')}
         {renderMenuItem('Land Survey')} {/* Added Land Survey under Coordinate Form */}
