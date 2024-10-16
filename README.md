@@ -58,11 +58,13 @@ Using W3Up Console
 - ✅ **OpenAi with Doctor Buddha Context:** Ask an OpenAi trained on the latest health topics relevant to your unique situation! Give Dr. Buddha your health data to look for associations and suggestions. Give it the latest YouTube videos to transcribe so it's up to date with the latest presentations that are relevant to your health.
 - ✅ **OpenAi with WotserWell Context:** OpenAi Assistant that taps into a vector store of Wisdom of the Sages Episodes for vedic wisdom as presented by Raghunath and Kaustubha Das. This is a great way to get a quick answer to a question or to get a quick dose of wisdom from the sages! 
 - ✅ **Asteroid Belt:** Just a cool visual for now but will soon be a functional AsteRoids type game. 
+- <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="20" height="20">
+ **Smart Home Test Token (SHT):** to account for the next level of smart home ecosystem development we have deployed a test token to the Polygon network. This token is used to reward community members for their contributions as well as to provide a way to interact with the ecosystem. View the contract here: [0x81cCeF6414D4CDbed9FD6Ea98c2D00105800cd78](https://polygonscan.com/token/0x81ccef6414d4cdbed9fd6ea98c2d00105800cd78)
 
-### Upcoming Milestones
+### Upcoming Milestones and Visions
 
-- 🚧 **Smart Contracts:** Integrate rewards contracts with solidity.
-- 🚧 **Data Visualization:** Develop features for visualizing the Decent Community's set of data. 
+- 🚧 **Smart Contracts:** Integrate rewards contracts with w3 data store DIDs to automatically reward stewards for their shared data.
+- 🚧 **Data Visualization:** Develop features for visualizing the Decent Community's set of data (Oracles). 
 - 🚧 **Advanced UI/UX:** Enhance the user interface and user experience.
 - 🚧 **Community Features:** Introduce features for community interaction like proposition voting and microlending.
 - 🚧 **Gamification:** Introducing some games to explore the benefits of gamification for introducing people to Web3 and the Decent Smart Home Sim Siddhi way of life.
@@ -76,6 +78,7 @@ Using W3Up Console
 - <img src="https://bafybeie7l66frjp4im2xrsd3wxlhwcve4bxuxqrvs6i3a33untc6mwwkgm.ipfs.w3s.link/node_logo.png" alt="Node Logo" width="20" height="20"> **Node.js**
 - <img src="https://bafybeififxtnn4lyvw72l4l7p2ux2qiumsgm4y6zmjf3jryhmzxhzifwym.ipfs.w3s.link/Github_Logo.png" alt="GitHub Logo" width="20" height="20"> **GitHub**
 - <img src="https://bafybeia7dr3aeh53mmqxnpwfga2zflp2u6msvwih4iiziwrfxct5ti4of4.ipfs.w3s.link/SimSiddhiChat.png" alt="SimSiddhi OpenAi Logo" width="20" height="20"> **OpenAi**
+- <img src="https://bafybeicpv5ao6nyxhdln45jrd4gslyhrsagq72vvzmdpb2tsbm2vkz5jc4.ipfs.w3s.link/solidity.png" alt="Solidity Logo" width="20" height="20"> **Solidity**
 
 ## 📖 Documentation
 
