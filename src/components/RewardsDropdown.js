@@ -28,6 +28,7 @@ const RewardsDropdown = ({ walletConnected, setupWeb3Storage, handleEmailFormOpe
     'Service Rewards': false
   });
   const [rewards, setRewards] = useState({});
+  const [dshEarnings, setDshEarnings] = useState(0); // Initialize DSH earnings
 
   useEffect(() => {
     // Fetch reward rates
@@ -81,6 +82,13 @@ const RewardsDropdown = ({ walletConnected, setupWeb3Storage, handleEmailFormOpe
       onClick={setupWeb3Storage} // Call setupWeb3Storage when the button is clicked
     >
       <div className="scrollable-menu" style={{ zIndex: 2000, position: 'relative' }}>
+        {/* Earning DSH Header */}
+        <div className="earning-header">
+          <span>Earning:     <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DSH Token Icon" className="dsh-icon-mini" />
+          {dshEarnings.toFixed(2)}</span>
+        </div>
+        <Dropdown.Divider />
+
         {renderMenuItem('Email & Contact Form')}
         <Dropdown.Divider />
         {renderMenuItem('IPFS Pin Time')}

@@ -11,7 +11,7 @@
 
 
 <div align="center">
-    	<img height=auto width=auto src="https://bafybeigrzklvc7d7z5ieuku3bmhb4rtf4dgx6hd2i2cyuokcrqkfklocnm.ipfs.w3s.link/Screenshot 2024-10-12 at 7.38.56 AM.png">
+    	<img height=auto width=auto src="https://bafybeigzedgqg5kafnmva6l7v2cniqxvkbrgypycx43jplnyzaqdymvhxa.ipfs.w3s.link/Screenshot_2024-10-12_at_7.38.56_AM.png">
 </div>
 
 

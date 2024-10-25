@@ -15,6 +15,19 @@
 
 }
 
+.earning-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.dsh-icon-mini {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
 .scrollable-menu {
   max-height: calc(100vh - 70px); /* Full height of the page minus some padding */
   overflow-y: auto;
@@ -150,11 +163,30 @@
   color: #4ba33dba;
 }
 
+.token-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .token-icon {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.token-icon-mini {
+  background-color: #00000094;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+  position: absolute;
+  bottom: 0;        /* Aligns the bottom of the smaller icon with the larger one */
+  left: 15px;       /* Adjust this value to control the horizontal overlap */
+  z-index: 0;
 }
 
 /* Shimmer effect for the text */

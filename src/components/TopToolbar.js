@@ -24,6 +24,7 @@ const TopToolbar = ({
   const [ethBalance, setEthBalance] = useState(0);
   const [polBalance, setPolBalance] = useState(0);
   const [mintMeBalance, setMintMeBalance] = useState(0);
+  const [shtBalance, setShtBalance] = useState(0);
   const [dshBalance, setDshBalance] = useState(0);
   const [arbitrageData, setArbitrageData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -132,10 +133,12 @@ const TopToolbar = ({
             setEthBalance={setEthBalance}
             setPolBalance={setPolBalance}
             setMintMeBalance={setMintMeBalance} 
+            setShtBalance={setShtBalance}
             setDshBalance={setDshBalance}
             ethBalance={ethBalance}
             polBalance={polBalance} 
-            mintMeBalance={mintMeBalance} 
+            mintMeBalance={mintMeBalance}
+            shtBalance={shtBalance} 
             dshBalance={dshBalance} 
           />
         </div>

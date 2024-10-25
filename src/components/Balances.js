@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 
-const Balances = ({ walletAddress, setMintMeBalance, setDshBalance, setPolBalance, setEthBalance, mintMeBalance, dshBalance, polBalance, ethBalance }) => {
+const Balances = ({ walletAddress, setMintMeBalance, setShtBalance, setDshBalance, setPolBalance, setEthBalance, mintMeBalance, shtBalance, dshBalance, polBalance, ethBalance }) => {
 
   const fetchBalances = async (address) => {
     try {
       const mintMeResponse = await fetch(`/api/get-mintme-balance?walletAddress=${address}`);
       const mintMeData = await mintMeResponse.json();
       setMintMeBalance(mintMeData.balance);
+
+      const shtResponse = await fetch(`/api/get-sht-balance?walletAddress=${address}`);
+      const shtData = await shtResponse.json();
+      setShtBalance(shtData.balance);
 
       const dshResponse = await fetch(`/api/get-dsh-balance?walletAddress=${address}`);
       const dshData = await dshResponse.json();
@@ -56,9 +60,20 @@ const Balances = ({ walletAddress, setMintMeBalance, setDshBalance, setPolBalanc
         <p>MintMe: {formatBalance(mintMeBalance)}</p>
       </div>
 
-      {/* DSH Balance */}
+      {/* SHT Balance on Polygon Chain*/}
       <div className="token-balance">
-        <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="Decent Smart Home Token" className="token-icon" />
+        <div className="token-icon-wrapper">
+          <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="Decent Smart Home Token" className="token-icon" />
+          <img src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="Polygon Token Icon" className="token-icon-mini" />
+        </div>
+        <p>SHT: {formatBalance(shtBalance)}</p>
+      </div>
+      {/* DSH Balance on MintMe Chain */}
+      <div className="token-balance">
+        <div className="token-icon-wrapper">
+          <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="Decent Smart Home Token" className="token-icon" />
+          <img src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="Polygon Token Icon" className="token-icon-mini" />
+        </div>
         <p>DSH: {formatBalance(dshBalance)}</p>
       </div>
     </div>

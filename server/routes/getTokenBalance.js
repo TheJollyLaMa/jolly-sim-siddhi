@@ -26,6 +26,11 @@ const MINTME_TOKEN_ABI = require('../abis/MintMe.json'); // Add the ABI of your 
 // Create a contract instance for MintMe
 const mintMeContract = new web3MintMe.eth.Contract(MINTME_TOKEN_ABI, MINTME_TOKEN_CONTRACT_ADDRESS);
 
+// Create a contract instance for DSH
+const DSH_TOKEN_CONTRACT_ADDRESS = process.env.DECENT_SMARTHOME_ON_MINTME;
+const DSH_TOKEN_ABI = require('../abis/MintMe.json');
+const dshContract = new web3MintMe.eth.Contract(DSH_TOKEN_ABI, DSH_TOKEN_CONTRACT_ADDRESS);
+
 
 // Route to fetch ETH balance for a given wallet address
 router.get('/get-eth-balance', async (req, res) => {
@@ -58,7 +63,7 @@ router.get('/get-pol-balance', async (req, res) => {
 });
 
 // Route to fetch SHT token balance for a given wallet address
-router.get('/get-dsh-balance', async (req, res) => {
+router.get('/get-sht-balance', async (req, res) => {
   const { walletAddress } = req.query;
 
   try {
@@ -70,8 +75,35 @@ router.get('/get-dsh-balance', async (req, res) => {
     res.json({ balance: formattedBalance });
   
   } catch (error) {
-    console.error('Error fetching SHT token balance:', error);
-    res.status(500).json({ error: 'Failed to fetch SHT balance' });
+    console.error('Error fetching SHT token balance on Polygon chain:', error);
+    res.status(500).json({ error: 'Failed to fetch SHT balance on Polygon chain' });
+  }
+});
+
+// Route to fetch SHT token balance for a given wallet address
+router.get('/get-dsh-balance', async (req, res) => {
+  const { walletAddress } = req.query;
+
+  try {
+    // Get the balance from the contract
+    const rawBalance = await dshContract.methods.balanceOf(walletAddress).call();
+    const decimals = await dshContract.methods.decimals().call();
+
+    // Convert both the raw balance and the decimals to BigInt
+    const balanceBigInt = BigInt(rawBalance);
+    const decimalsBigInt = BigInt(decimals);
+
+    // Adjust the balance based on the decimals
+    const divisor = BigInt(10) ** decimalsBigInt;
+    const formattedBalance = balanceBigInt / divisor;
+
+    // Convert the BigInt to a string for safe display
+    console.log(`Adjusted Balance: ${formattedBalance}`);
+    res.json({ balance: formattedBalance.toString() });
+  
+  } catch (error) {
+    console.error('Error fetching DSH token balance on MintMe Chain:', error);
+    res.status(500).json({ error: 'Failed to fetch DSH balance on MintMe Chain:' });
   }
 });
 
