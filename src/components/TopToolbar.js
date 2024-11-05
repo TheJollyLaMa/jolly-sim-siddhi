@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { MetaMask } from './MetaMask';
 import RewardsDropdown from './RewardsDropdown';
 import EmailFormModal from './EmailFormModal';
+
 import BottomToolbar from './BottomToolbar';
-import Balances from './Balances';
+import RightToolbar from './RightToolbar'; // Import RightToolbar
+
+import Balances from './Balances_ERC';
 import Miner from './Miner'; // Import the Miner component
 import '../styles/Toolbar.css';
 
@@ -166,6 +169,7 @@ const TopToolbar = ({
 
 
       <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress to BottomToolbar */}
+      <RightToolbar walletAddress={walletAddress} /> {/* Pass walletAddress to RightToolbar */}
     </>
   );
 };

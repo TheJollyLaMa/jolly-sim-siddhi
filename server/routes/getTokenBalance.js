@@ -32,6 +32,15 @@ const DSH_TOKEN_ABI = require('../abis/MintMe.json');
 const dshContract = new web3MintMe.eth.Contract(DSH_TOKEN_ABI, DSH_TOKEN_CONTRACT_ADDRESS);
 
 
+
+// Import the LP token contract ABI and create a contract instance
+const LP_TOKEN_ABI = require('../abis/QuickV3_Algebra_LP.json');
+const LP_TOKEN_CONTRACT_ADDRESS = process.env.LP_TOKEN_CONTRACT_ADDRESS;  // Set this in your .env file
+// Instantiate the contract
+const lpTokenContract = new web3Polygon.eth.Contract(LP_TOKEN_ABI, LP_TOKEN_CONTRACT_ADDRESS);
+
+
+
 // Route to fetch ETH balance for a given wallet address
 router.get('/get-eth-balance', async (req, res) => {
   const { walletAddress } = req.query;
@@ -125,6 +134,39 @@ router.get('/get-mintme-balance', async (req, res) => {
     console.error('Error fetching MintMe token balance:', error);
     res.status(500).json({ error: 'Failed to fetch MintMe balance' });
   }
+});
+
+// Helper function to generate position key
+const generatePositionKey = (ownerAddress, tickLower, tickUpper) => {
+  return web3Polygon.utils.soliditySha3(
+    { t: 'address', v: ownerAddress },
+    { t: 'int24', v: tickLower },
+    { t: 'int24', v: tickUpper }
+  );
+};
+
+// Route to check LP position ownership and details
+router.get('/get-lp-ownership', async (req, res) => {
+  const { walletAddress, tickLower, tickUpper, tokenId } = req.query;
+  console.log("Token Id:", tokenId);
+  try {
+    // Generate position key using the wallet address and tick ranges
+    const positionKey = generatePositionKey(walletAddress, parseInt(tickLower), parseInt(tickUpper));
+
+    // Retrieve position details
+    const position = await lpTokenContract.methods.positions(positionKey).call();
+
+    // Check if the liquidity in the position is greater than 0, indicating ownership
+    if (position.liquidity > 0) {
+      res.json({ ownsToken: true, liquidity: position.liquidity });
+    } else {
+      res.json({ ownsToken: false });
+    }
+  } catch (error) {
+    console.error('Error fetching LP ownership:', error);
+    res.status(500).json({ error: 'Failed to fetch LP ownership' });
+  }
+
 });
 
 module.exports = router;

@@ -1,0 +1,76 @@
+/* BalanceDropdownStyles.css */
+
+.balance-dropdowns {
+  display: flex;
+  gap: 15px;
+}
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  background: transparent; /* Transparent background */
+}
+
+.dropdown-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px; /* Adjust padding for alignment */
+}
+
+.dropdown-display .token-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  border: 1px solid #ddd; /* Optional: light border for visibility */
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: max-content;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.dropdown-item .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown-item p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Shimmer effect for the balance amounts */
+.shimmer-green {
+  color: #32CD32; /* LimeGreen color for shimmer effect */
+  animation: shimmer 1.5s infinite alternate;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0.6;
+  }
+}

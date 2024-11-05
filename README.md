@@ -60,6 +60,7 @@ Using W3Up Console
 - ✅ **Asteroid Belt:** Just a cool visual for now but will soon be a functional AsteRoids type game. 
 - <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="20" height="20"><img src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="web3.storage Logo" width="10" height="10"> **Smart Home Test Token (SHT):** to account for the next level of smart home ecosystem development we have deployed a test token to the Polygon network. This token is used to reward community members for their contributions as well as to provide a way to interact with the ecosystem. View the contract here: [SmartHomeTest (SHT)](https://polygonscan.com/token/0x81ccef6414d4cdbed9fd6ea98c2d00105800cd78)
 - <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="20" height="20"><img src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="MintMe Logo" width="10" height="10">**Decent Smart Homes Token on MintMe:** Decent Smart Homes was first integrated within the MintMe ecosystem and has recently deployed a contract for 10 million DSH tokens currently being traded on the MintMe platform.  View the contract here: [DecentSmartHomes on MintMe](https://www.mintme.com/explorer/token/0x969d65ee0823F9c892bDFe3c462D91ab1D278B4E)
+- <img src="https://bafybeihx7bjavlb6uicr4d3osgrduatte3jtsfrfs2exrymmauw4dbgwvm.ipfs.w3s.link/SimSiddhiDefi.png" alt="DecentSmartHome Logo" width="20" height="20"> **Decent Maker:** Decent Maker is a collection of Market Maker prototypes and sandbox frankensteins to help a home stabilize the markets they are participating in while capturing value with standby capital.  Projects in the pipeline include targeted arbitrage, portfolio allocator and protector, DeFi lending with locked LP tokens   : [DecentMaker](https://www.mintme.com/explorer/token/0x969d65ee0823F9c892bDFe3c462D91ab1D278B4E)
 
 ### Upcoming Milestones and Visions
 
@@ -69,6 +70,7 @@ Using W3Up Console
 - 🚧 **Community Features:** Introduce features for community interaction like proposition voting and microlending.
 - 🚧 **Gamification:** Introducing some games to explore the benefits of gamification for introducing people to Web3 and the Decent Smart Home Sim Siddhi way of life.
 - 🚧 **Onboarding:** Trying new ways to get people interested and earning right at home!
+- 🚧 **DeFi, Liquidity Providing, & MarketMaking:** Unlock the network of micro economies arising from homes that have their necessities accoutned for.
 
 ## 🛠️ Technologies Used
 

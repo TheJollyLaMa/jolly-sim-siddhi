@@ -1,11 +1,12 @@
 import React from 'react';
-import '../styles/Toolbar.css'; // Ensure you have the necessary styles
+import '../styles/LeftToolbar.css'; // Ensure you have the necessary styles
 
 const LeftToolbar = () => {
   return (
     <div id="leftToolbar">
-      <div id="leftArrow" className="arrow" onClick={() => window.location.href='leftPage.html'}>
-        <span>&larr;</span>
+      {/* Right Navigation Double Arrow */}
+      <div className="scene-change-button" onClick={() => window.location.href='leftPage.html'}>
+        ⇐
       </div>
     </div>
   );

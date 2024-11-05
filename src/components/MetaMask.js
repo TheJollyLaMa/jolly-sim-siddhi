@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import '../styles/MetaMask.css'; // Updated path
 
 const networkDetails = {

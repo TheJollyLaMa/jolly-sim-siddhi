@@ -4,10 +4,14 @@ import TopToolbar from './components/TopToolbar';
 import BottomToolbar from './components/BottomToolbar';
 import LeftToolbar from './components/LeftToolbar';
 import RightToolbar from './components/RightToolbar';
+
+import Balances from './components/Balances_ERC';
+
 import ThreeScene from './components/ThreeScene'; // The 3D game scene
 import { initWeb3, initSocket } from './services/init';
 import './styles/App.css';
 import './styles/Toolbar.css';
+import { networkDetails } from './components/MetaMask';
 
 function App() {
   const [walletAddress, setWalletAddress] = useState('No wallet connected');
@@ -57,6 +61,7 @@ function App() {
             selectedAccount={selectedAccount}
             setSelectedAccount={setSelectedAccount}
           />
+          <Balances walletAddress={walletAddress} networkName={networkName} networkDetails={networkDetails} />
           {/* The main game scene */}
           <ThreeScene 
             onShipCollision={handleGameOver}  // Pass game over handler
