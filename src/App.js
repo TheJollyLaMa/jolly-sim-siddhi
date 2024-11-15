@@ -21,6 +21,7 @@ function App() {
   const [selectedAccount, setSelectedAccount] = useState(null);
   const [gameOver, setGameOver] = useState(false); // Track game over state
   const [gameWin, setGameWin] = useState(false);   // Track win state
+  const [polBalance, setPolBalance] = useState(0);
 
   useEffect(() => {
     initWeb3(setWalletAddress, setNetworkName);
@@ -69,7 +70,11 @@ function App() {
           />
           <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress here */}
           <LeftToolbar />
-          <RightToolbar />
+          <RightToolbar 
+            walletAddress={walletAddress}
+            polBalance={polBalance}
+            networkName={networkName}
+          />
           {/* Game over or game win messages */}
           {gameOver && <div className="game-status">Game Over! Try again.</div>}
           {gameWin && <div className="game-status">Congratulations! You Win!</div>}

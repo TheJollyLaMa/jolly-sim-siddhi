@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Balances = ({ walletAddress, setLP1Balance, setLP2Balance, setLP3Balance, lp1Balance, lp2Balance, lp3Balance }) => {
+const Balances_LP = ({ walletAddress, setLP1Balance, setLP2Balance, setLP3Balance, lp1Balance, lp2Balance, lp3Balance }) => {
 
   const fetchBalances = async (address) => {
     try {
@@ -58,4 +58,4 @@ const Balances = ({ walletAddress, setLP1Balance, setLP2Balance, setLP3Balance, 
   );
 };
 
-export default Balances;
+export default Balances_LP;

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aave/math-utils": "^1.30.5",
+    "@aave/protocol-js": "^4.3.0",
     "@google-cloud/speech": "^6.6.1",
     "@google-cloud/storage": "^7.11.3",
     "@ipld/car": "^5.3.2",

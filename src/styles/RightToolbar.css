@@ -23,7 +23,26 @@
   box-shadow: 0 0 15px rgba(1, 252, 218, 0.7);
 }
 
+.token-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+  position: relative;
+  z-index: 1;
+}
 
+.token-icon-mini {
+  background-color: #00000094;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 255, 153, 0.8);
+  position: absolute;
+  bottom: 0;        /* Aligns the bottom of the smaller icon with the larger one */
+  left: 15px;       /* Adjust this value to control the horizontal overlap */
+  z-index: 0;
+}
 /* Centered double-arrow button */
 .scene-change-button {
   font-size: 24px;
@@ -200,6 +219,10 @@
   margin-bottom: 10px;
   border-radius: 5px;
   border: 1px solid #ab03ff4f;
+  background-color: #0000006f;
+  color: rgba(197, 110, 255, 0.758);
+  box-shadow: 0 0 10px rgba(255, 251, 0, 0.7);
+
 }
 
 /* LP Modal Styles */
@@ -245,4 +268,70 @@
 .cancel-button {
   background-color: #cccccca1;
   color: black;
+}
+
+
+
+.amount-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px;
+}
+
+.amount-input {
+  width: 250px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ab03ff4f;
+  margin: 20px;
+  background-color: #0000006f;
+  color: rgba(197, 110, 255, 0.758);
+  box-shadow: 0 0 10px rgba(255, 251, 0, 0.7);
+  animation: shimmer 3s infinite;
+}
+
+.balance-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 3px;
+}
+
+.max-button {
+  background: #4caf4f00;
+  border: none;
+  padding: 3px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  margin: 3px;
+  color: rgba(157, 61, 247, 0.7);
+}
+
+.usd-conversion-text {
+  font-size: 11px;
+  animation: shimmer 2s infinite;
+  color: rgba(110, 228, 228, 0.599);
+
+}
+
+.mintme-conversion-text {
+  font-size: 11px;
+  animation: shimmer 2s infinite;
+  color: rgba(255, 251, 0, 0.7);
+  margin: 3px;
+}
+
+.max-button:hover {
+  background: #6cb8b856;
+  animation: shimmer 2s infinite;
+}
+
+.usdc-value {
+  font-size: 10px;
+  color: #888;
+}
+.mintme-value {
+  font-size: 10px;
+  color: #888;
 }

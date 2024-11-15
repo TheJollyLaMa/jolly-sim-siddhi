@@ -10,6 +10,7 @@ import Balances from './Balances_ERC';
 import Miner from './Miner'; // Import the Miner component
 import '../styles/Toolbar.css';
 
+
 const TopToolbar = ({
   onConnectSmartHome,
   setWalletAddress,
@@ -32,6 +33,10 @@ const TopToolbar = ({
   const [arbitrageData, setArbitrageData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [polToUsdcRate, setPolToUsdcRate] = useState(0);
+  const [polToMintMeRate, setPolToMintMeRate] = useState(0);
+
+
   useEffect(() => {
     if (walletAddress && walletAddress !== 'No wallet connected') {
       setWalletConnected(true);
@@ -39,6 +44,11 @@ const TopToolbar = ({
       setWalletConnected(false);
     }
   }, [walletAddress]);
+
+  const handleRatesChange = (rates) => {
+    setPolToUsdcRate(rates.polToUsdcRate);
+    setPolToMintMeRate(rates.polToMintMeRate);
+  };
 
   const handleEmailFormOpen = () => {
     setShowEmailForm(true);
@@ -110,6 +120,8 @@ const TopToolbar = ({
     }
   };
 
+
+
   return (
     <>
       <div className="toolbar">
@@ -123,14 +135,15 @@ const TopToolbar = ({
           {formattedAddress}
         </div>
         <img
-    src="https://bafybeihx7bjavlb6uicr4d3osgrduatte3jtsfrfs2exrymmauw4dbgwvm.ipfs.w3s.link/SimSiddhiDefi.png"
-    alt="Sim Siddhi Defi Icon"
-    className="arbitrage-button"
-    onClick={() => runArbitrageBot()} // Replace with your function
-    style={{ cursor: 'pointer', width: '50px', height: '50px', borderRadius: '5px' }}
-/>
+          src="https://bafybeihx7bjavlb6uicr4d3osgrduatte3jtsfrfs2exrymmauw4dbgwvm.ipfs.w3s.link/SimSiddhiDefi.png"
+          alt="Sim Siddhi Defi Icon"
+          className="arbitrage-button"
+          onClick={() => runArbitrageBot()} // Replace with your function
+          style={{ cursor: 'pointer', width: '50px', height: '50px', borderRadius: '5px' }}
+        />
         <div className="miner-switch-and-balances">
           <Miner isMinerHigh={isMinerHigh} setIsMinerHigh={setIsMinerHigh} />
+          {/* CHANGED: Ensure Balances component receives networkName prop */}
           <Balances 
             walletAddress={walletAddress} 
             setEthBalance={setEthBalance}
@@ -142,7 +155,8 @@ const TopToolbar = ({
             polBalance={polBalance} 
             mintMeBalance={mintMeBalance}
             shtBalance={shtBalance} 
-            dshBalance={dshBalance} 
+            dshBalance={dshBalance}
+            networkName={networkName}  // Ensure this prop is passed
           />
         </div>
         <MetaMask 
@@ -167,9 +181,14 @@ const TopToolbar = ({
         </div>
       )}
 
-
       <BottomToolbar walletAddress={walletAddress} /> {/* Pass walletAddress to BottomToolbar */}
-      <RightToolbar walletAddress={walletAddress} /> {/* Pass walletAddress to RightToolbar */}
+      <RightToolbar
+        walletAddress={walletAddress}
+        polBalance={polBalance}
+        polToUsdcRate={polToUsdcRate}
+        polToMintMeRate={polToMintMeRate}
+      />
+
     </>
   );
 };

@@ -35,6 +35,8 @@ const vectorStoreRoutes = require('./routes/vectorStore');
 
 const arbitrageRoutes = require('./routes/arbitrage');
 const liquidityProviderRoutes = require('./routes/liquidityProvider');
+const aaveRoutes = require('./routes/aave');
+
 
 app.use('/api', emailRoutes);
 app.use('/api', coordinatesRoutes);
@@ -51,6 +53,7 @@ app.use('/api', wotserWellChatRoutes);
 app.use('/api', vectorStoreRoutes);
 app.use('/api', arbitrageRoutes);
 app.use('/api', liquidityProviderRoutes);
+app.use('/api', aaveRoutes);
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Hello from the server!' });

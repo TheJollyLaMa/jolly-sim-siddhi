@@ -102,7 +102,11 @@ If you have any questions or suggestions, feel free to reach out to us at [jolly
     <img src="https://bafybeih7e5eyvfs64oimtn5ywti2lovl3ydysq5mcoxbefpx2qkly4rdrq.ipfs.w3s.link/web3storage.png" alt="web3.storage Logo" width="50" height="50">
     <img src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="web3.storage Logo" width="50" height="50">
     <img src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="MintMe Logo" width="50" height="50">
-    <img src="https://bafybeigr6ri2ythjbciusgjdvimjt74caymflc5ut4rmtrkhcoi2cr53ua.ipfs.w3s.link/DecentSmartHome.png" alt="DecentSmartHome Logo" width="50" height="50">
+    <video width="50" height="50" controls>
+        <source src="https://bafybeieovtgs2xae4ukijmjsn4g6zh5ja3doehx6nygla5jdn5if3oizqi.ipfs.w3s.link/ComposToken.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <img src="https://bafybeieovtgs2xae4ukijmjsn4g6zh5ja3doehx6nygla5jdn5if3oizqi.ipfs.w3s.link/ComposToken.mp4" alt="DecentSmartHome Logo" width="50" height="50">
     <img src="https://bafybeifej4defs5s5wryxylmps42c7xkbzle3fxjgnsbb5hcfnd5b77zwa.ipfs.w3s.link/Ens_Eth_Breathe.gif" alt="Ens_Eth_Breathe Logo" width="50" height="50">
     <img src="https://bafybeie7l66frjp4im2xrsd3wxlhwcve4bxuxqrvs6i3a33untc6mwwkgm.ipfs.w3s.link/node_logo.png" alt="Node Logo" width="50" height="50">
     <img src="https://bafybeicpv5ao6nyxhdln45jrd4gslyhrsagq72vvzmdpb2tsbm2vkz5jc4.ipfs.w3s.link/solidity.png" alt="Solidity Logo" width="50" height="50">

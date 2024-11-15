@@ -186,6 +186,33 @@ router.post('/collect-fees', async (req, res) => {
     }
 });
 
+// Route to transfer POL to MintMe wallet
+router.post('/send-pol-to-mintme', async (req, res) => {
+    const { fromAddress, recipientAddress, amountToSend } = req.body;
+    const privateKey = process.env.PRIVATE_KEY; // Replace with a private key or a secure signing method.
+
+    try {
+        const sendAmount = web3Polygon.utils.toWei(amountToSend.toString(), 'ether');
+        const transaction = {
+            from: fromAddress,
+            to: recipientAddress,
+            value: sendAmount,
+            gas: 21000,
+            gasPrice: await web3Polygon.eth.getGasPrice(),
+        };
+
+        // Sign and send the transaction
+        const signedTx = await web3Polygon.eth.accounts.signTransaction(transaction, privateKey);
+        const receipt = await web3Polygon.eth.sendSignedTransaction(signedTx.rawTransaction);
+
+        console.log('Transaction hash:', receipt.transactionHash);
+        res.json({ success: true, transactionHash: receipt.transactionHash });
+    } catch (error) {
+        console.error('Error sending POL:', error);
+        res.status(500).json({ error: 'Failed to send POL to MintMe wallet' });
+    }
+});
+
 module.exports = router;
 
 // Make sure to have a helper function to generate position keys (if not already implemented)

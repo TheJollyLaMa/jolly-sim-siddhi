@@ -30,6 +30,7 @@ const Balances = ({
   networkName
 }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
+  
 
   const toggleDropdown = (dropdown) => {
     setOpenDropdown((prev) => (prev === dropdown ? null : dropdown));
@@ -39,6 +40,7 @@ const Balances = ({
     try {
       const mintMeResponse = await fetch(`/api/get-mintme-balance?walletAddress=${address}`);
       const mintMeData = await mintMeResponse.json();
+      console.log(mintMeData.balance);
       setMintMeBalance(mintMeData.balance);
 
       const shtResponse = await fetch(`/api/get-sht-balance?walletAddress=${address}`);
@@ -51,6 +53,7 @@ const Balances = ({
 
       const polResponse = await fetch(`/api/get-pol-balance?walletAddress=${address}`);
       const polData = await polResponse.json();
+      console.log(polData.balance);
       setPolBalance(polData.balance);
 
       const ethResponse = await fetch(`/api/get-eth-balance?walletAddress=${address}`);
@@ -61,18 +64,26 @@ const Balances = ({
     }
   };
 
+  const fetchSwapPrices = async (address) => {
+    // Fetch swap prices from LP_Arbitrage python script
+  };
+
   useEffect(() => {
     if (walletAddress) {
       fetchBalances(walletAddress);
     }
   }, [walletAddress]);
 
+
   const formatBalance = (balance) => (balance ? Number(balance).toFixed(4) : '0.0000');
 
   // Determine main coin and token icons and balances based on networkName
-  const mainCoinIcon = networkDetails[networkName]?.coinIcon;
+  /* CHANGED: Adjusted mainCoinIcon and mainCoinBalance to depend on networkName */
+  const mainCoinIcon = networkDetails[networkName]?.coinIcon || networkDetails["MintMe"].coinIcon;  // Default to MintMe if undefined
+  const mainCoinBalance = 
+    networkName === "Ethereum Mainnet" ? ethBalance :
+    networkName === "Polygon" ? polBalance : mintMeBalance;
   const mainTokenIcon = networkDetails["DSH Token"];
-  const mainCoinBalance = networkName === "Ethereum Mainnet" ? ethBalance : networkName === "Polygon" ? polBalance : mintMeBalance;
   const mainTokenBalance = networkName === "Polygon" ? shtBalance : dshBalance;
 
   return (
@@ -80,7 +91,7 @@ const Balances = ({
       {/* Coin Dropdown */}
       <div className="dropdown" onClick={() => toggleDropdown('coin')}>
         <div className="dropdown-display">
-          <img src={mainCoinIcon} alt="Main Coin" className="token-icon" />
+          {mainCoinIcon && <img src={mainCoinIcon} alt="Main Coin" className="token-icon" />}
           <span className="shimmer-green">{formatBalance(mainCoinBalance)}</span>
         </div>
         {openDropdown === 'coin' && (

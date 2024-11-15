@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/RightToolbar.css';
 
-function RightToolbar({ onSwapToUSDC, onSwapToPOL, onSendPOL, onSwapToSHT }) {
+function RightToolbar({ onSwapToUSDC, onSwapToPOL, onSendPOL, onSwapToSHT, polBalance, polToUsdcRate, polToMintMeRate }) {
   const [showSendModal, setShowSendModal] = useState(false);
   const [showSHTSwapModal, setShowSHTSwapModal] = useState(false);
   const [showUSDCSwapModal, setShowUSDCSwapModal] = useState(false);
@@ -10,6 +10,9 @@ function RightToolbar({ onSwapToUSDC, onSwapToPOL, onSendPOL, onSwapToSHT }) {
   const [showSHT_USDC_LPModal, setShowSHT_USDC_LPModal] = useState(false);
   const [recipientAddress, setRecipientAddress] = useState("");
   const [swapAmount, setSwapAmount] = useState("");
+  const [sendAmount, setSendAmount] = useState('');
+
+
 
   const handleSHT_POL_LPClick = () => {
     setShowSHT_POL_LPModal(true);
@@ -91,7 +94,7 @@ function RightToolbar({ onSwapToUSDC, onSwapToPOL, onSendPOL, onSwapToSHT }) {
 
       {/* Right Navigation Double Arrow */}
       <div className="scene-change-button" onClick={() => window.location.href='rightPage.html'}>
-        ➾
+        ⇉
       </div>
 
       {/* Swap Buttons */}
@@ -117,25 +120,42 @@ function RightToolbar({ onSwapToUSDC, onSwapToPOL, onSendPOL, onSwapToSHT }) {
         </button>
       </div>
 
-      {/* Send POL Modal */}
-      {showSendModal && (
-        <div className="send-modal">
-          <h4>Send POL(Matic) <img id="pol-swap" src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="POL" /> 
-           to your MintMe Wallet <img id="send-pol-to-mintme" src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="MM" />
-          </h4>
-          <p className="warning-text">Warning: Double-check the address. Mistakes are irreversible.</p>
-          <p>Find your Polygon Wallet Address on MintMe here: <a href='https://www.mintme.com/wallet'>https://www.mintme.com/wallet</a></p>
+
+
+
+      {/* SHT/POL LP Modal */}
+      {showSHT_POL_LPModal && (
+        <div className="sht-pol-lp-modal">
+          <h4>Add Liquidity to SHT/POL pool <img id="sht-pol-lp" src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="POL" /></h4>
           <input
             type="text"
-            value={recipientAddress}
-            onChange={(e) => setRecipientAddress(e.target.value)}
-            placeholder="Polygon wallet address on MintMe"
-            className="address-input"
+            value={swapAmount}
+            onChange={(e) => setSwapAmount(e.target.value)}
+            placeholder="Amount to Add"
+            className="amount-input"
           />
-          <button className="confirm-button" onClick={handleSendPOLConfirm}>Send</button>
-          <button className="cancel-button" onClick={() => setShowSendModal(false)}>Cancel</button>
+          <button className="confirm-button" onClick={handleSHT_POL_LPConfirm}>Confirm</button>
+          <button className="cancel-button" onClick={() => setShowSHT_POL_LPModal(false)}>Cancel</button>
         </div>
       )}
+
+      {/* SHT/USDC LP Modal */}
+      {showSHT_USDC_LPModal && (
+        <div className="sht-usdc-lp-modal">
+          <h4>Add Liquidity to SHT/USDC pool <img id="sht-usdc-lp" src="https://bafybeiag2css4im6d7fdtcafwabw2qau46yrzhn4z23hwhsft2e3faa2fy.ipfs.w3s.link/USDC_of_the_future.png" alt="USDC" /></h4>
+          <input
+            type="text"
+            value={swapAmount}
+            onChange={(e) => setSwapAmount(e.target.value)}
+            placeholder="Amount to Add"
+            className="amount-input"
+          />
+          <button className="confirm-button" onClick={handleSHT_USDC_LPConfirm}>Confirm</button>
+          <button className="cancel-button" onClick={() => setShowSHT_USDC_LPModal(false)}>Cancel</button>
+        </div>
+      )}
+
+
 
       {/* SHT Swap Modal */}
       {showSHTSwapModal && (
@@ -185,37 +205,66 @@ function RightToolbar({ onSwapToUSDC, onSwapToPOL, onSendPOL, onSwapToSHT }) {
         </div>
       )}
 
-      {/* SHT/POL LP Modal */}
-      {showSHT_POL_LPModal && (
-        <div className="sht-pol-lp-modal">
-          <h4>Add Liquidity to SHT/POL pool <img id="sht-pol-lp" src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="POL" /></h4>
+{/* Send POL to MintMe Modal */}
+      {showSendModal && (
+        <div className="send-modal">
+          <h4>Send POL(Matic) 
+            <img id="pol-swap" src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" alt="POL" /> 
+            to your MintMe Wallet 
+            <img id="send-pol-to-mintme" src="https://bafybeig67sj4te7xkz5ku67ksnhxdfzikblc77gsecv53owxe6b4z5aega.ipfs.w3s.link/MintMeLogo.png" alt="MM" />
+          </h4>
+          <p className="warning-text">Warning: Double-check the address. Mistakes are irreversible.</p>
+          <p>Find your Polygon Wallet Address on MintMe here: <a href='https://www.mintme.com/wallet'>https://www.mintme.com/wallet</a></p>
+          
+          {/* Input for the recipient address */}
           <input
             type="text"
-            value={swapAmount}
-            onChange={(e) => setSwapAmount(e.target.value)}
-            placeholder="Amount to Add"
-            className="amount-input"
+            value={recipientAddress}
+            onChange={(e) => setRecipientAddress(e.target.value)}
+            placeholder="Polygon wallet address on MintMe"
+            className="address-input"
           />
-          <button className="confirm-button" onClick={handleSHT_POL_LPConfirm}>Confirm</button>
-          <button className="cancel-button" onClick={() => setShowSHT_POL_LPModal(false)}>Cancel</button>
+
+          {/* Input for the amount to send */}
+          <div className="amount-input-container">
+            
+            <img 
+                src="https://bafybeic5bvnkjejuxbogn2n7lyzfyf5l6glgzrxkidjwj4yvhyci5haoca.ipfs.w3s.link/PolygonLogo.png" 
+                alt="POL" 
+                className="token-icon"
+            />
+
+            <input
+              type="number"
+              value={sendAmount}
+              onChange={(e) => setSendAmount(e.target.value)}
+              placeholder="Amount to send"
+              className="amount-input"
+            />
+            <span className="balance-info">
+            
+              Balance: {polBalance} POL 
+              <button 
+                className="max-button" 
+                onClick={() => setSendAmount(polBalance)}
+              >
+                MAX
+              </button>
+            </span>
+            <span className="usdc-value">
+              ≈ ${(sendAmount * polToUsdcRate).toFixed(2)} USDC
+            </span>
+            <span className="mintme-conversion-text">
+              ≈ {(sendAmount * polToMintMeRate).toFixed(2)} MintMe
+            </span>
+          </div>
+
+          <button className="confirm-button" onClick={handleSendPOLConfirm}>Send</button>
+          <button className="cancel-button" onClick={() => setShowSendModal(false)}>Cancel</button>
         </div>
       )}
 
-      {/* SHT/USDC LP Modal */}
-      {showSHT_USDC_LPModal && (
-        <div className="sht-usdc-lp-modal">
-          <h4>Add Liquidity to SHT/USDC pool <img id="sht-usdc-lp" src="https://bafybeiag2css4im6d7fdtcafwabw2qau46yrzhn4z23hwhsft2e3faa2fy.ipfs.w3s.link/USDC_of_the_future.png" alt="USDC" /></h4>
-          <input
-            type="text"
-            value={swapAmount}
-            onChange={(e) => setSwapAmount(e.target.value)}
-            placeholder="Amount to Add"
-            className="amount-input"
-          />
-          <button className="confirm-button" onClick={handleSHT_USDC_LPConfirm}>Confirm</button>
-          <button className="cancel-button" onClick={() => setShowSHT_USDC_LPModal(false)}>Cancel</button>
-        </div>
-      )}
+
     </div>
   );
 }
